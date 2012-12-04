@@ -1,5 +1,13 @@
 {% extends '_base.html' %}
 
+{% block extra_css %}
+    {{ CSS.push('less/memoriam.less') }}
+{% endblock %}
+
+{% block extra_head_js %}{% endblock %}
+{% block extra_head %}{% endblock %}
+
+
 {% block content %}
 
 
@@ -16,5 +24,12 @@
 	</div>
 </div>
 
+<div id="slideshow">
+</div>
+
 
 {% endblock %}
+
+
+{% block extra_foot_js %}{% endblock %}
+{% block extra_foot %}{% endblock %}
