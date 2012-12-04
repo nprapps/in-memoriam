@@ -13,7 +13,7 @@ $(function() {
 			$.each(slideshow_data, function(k,v) {
 				var slide_info = '';
 				
-				slide_info += '<div id="slide' + k + '" class="slideshow_item" style="background-image: url(http://media.npr.org/assets/music/specials/memoriam2011/images/' + v["image"] + ');">';
+				slide_info += '<div id="slide' + k + '" class="slideshow_item" style="background-image: url(\'http://media.npr.org/assets/music/specials/memoriam2011/images/' + v["image"] + '\');">';
 				slide_info += '<div class="slide_description">';
 				slide_info += '<h2>' + v["artist_first_name"] + ' ' + v["artist_last_name"] + '</h2>';
 				slide_info += '<p class="dates">' + v["dob"] + '-' + v["dod"] + '</p>';
