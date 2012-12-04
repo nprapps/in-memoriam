@@ -15,11 +15,6 @@ The project contains the following folders and important files:
 * ``app_config.py`` -- Global project configuration for scripts, deployment, etc.
 * ``fabfile.py`` -- [Fabric](http://docs.fabfile.org/en/latest/) commands automating setup and deployment
 
-Configure the project
----------------------
-
-* Update ``app_config.py`` with the name of the new project.
-
 Install requirements
 --------------------
 
