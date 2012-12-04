@@ -22,13 +22,15 @@ Node.js is required for the static asset pipeline. If you don't already have it,
 
 ```
 brew install node
+curl https://npmjs.org/install.sh | sh
 ```
 
 Then install the project requirements:
 
 ```
+cd in-memoriam
 npm install less universal-jst
-mkvirtualenv $NEW_PROJECT_NAME
+mkvirtualenv in-memoriam
 pip install -r requirements.txt
 ```
 
@@ -47,7 +49,7 @@ Run the project locally
 A flask app is used to run the project locally. It will automatically recompile templates and assets on demand.
 
 ```
-workon $NEW_PROJECT_NAME
+workon in-memoriam
 python app.py
 ```
 
@@ -59,7 +61,7 @@ Compile with static assets
 Compile LESS to CSS, compile javascript templates to Javascript and minify all assets:
 
 ```
-workon $NEW_PROJECT_NAME
+workon in-memoriam 
 fab render 
 ```
 
