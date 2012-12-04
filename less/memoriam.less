@@ -1,0 +1,43 @@
+// Global variables
+@img-root: "../img";
+@screen-height: 1100px;
+@slide-bg-color: #111;
+
+/*
+body { margin: 0; padding: 0; font: 13px/1.5 Arial, Helvetica, sans-serif; color: #fff; }
+h1,h2,h3,h4,h5,h6 { margin: 0; }
+*/
+
+/* TITLE SCREEN */
+#title-inner { 
+background: @slide-bg-color url(http://placekitten.com/800/600);
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	background-size:cover;
+	height: @screen-height;
+}
+#title-button {
+	display: block;
+	width: 60%;
+	margin: 0 auto;
+	background: rgba(0,0,0,.5);
+	padding: 1%;
+	color: #fff;
+	text-decoration: none;
+}
+#title-button h1 {
+	background: url('@img-root/hed-in-memoriam.png') no-repeat;
+	height: 73px;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+
+/* SLIDESHOW */
+.slideshow_item {
+	background-color: @slide-bg-color;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	background-size:cover;
+	height: @screen-height;
+	float: left;
+}
