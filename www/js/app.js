@@ -85,6 +85,7 @@ $(document).ready(function() {
 			$next.click(function() {
 				if (active_slide < num_slides) {
 					active_slide++;
+					// jump to the next cuepoint
 					var cue = slideshow_data[active_slide]['cue_start']
 					console.log(active_slide,cue);
 					$player.jPlayer("play", cue);
@@ -106,6 +107,7 @@ $(document).ready(function() {
 			$back.click(function() {
 				if (active_slide > 0) {
 					active_slide--;
+					// jump to the previous cuepoint
 					var cue = slideshow_data[active_slide]['cue_start']
 					console.log(active_slide,cue);
 					$player.jPlayer("play", cue);
