@@ -18,8 +18,8 @@ $(document).ready(function() {
 	$player.jPlayer({
 		ready: function () {
 			$(this).jPlayer("setMedia", {
-				mp3: "FalconHood.mp3",
-				oga: "FalconHood.ogg"
+				mp3: "http://stage-apps.npr.org/in-memoriam/FalconHood.mp3",
+				oga: "http://stage-apps.npr.org/in-memoriam/FalconHood.ogg"
 			}).jPlayer("pause");
 		},
 		play: function() { // To avoid both jPlayers playing together.
@@ -77,7 +77,7 @@ $(document).ready(function() {
 			afterScroll: function() {
 				$next.show();
 				$back.show();
-				$player.jPlayer("play", 0);
+				$player.jPlayer("play");
 			}
 		});
 		return false;
@@ -86,6 +86,7 @@ $(document).ready(function() {
 	$next.click(function() {
 		if (active_slide < num_slides) {
 			active_slide++;
+			console.log(active_slide);
 			// jump to the next cuepoint
 			var cue = slideshow_data[active_slide]['cue_start'];
 			$player.jPlayer("play", slideshow_data[active_slide]['cue_start']);
@@ -98,7 +99,6 @@ $(document).ready(function() {
 			active_slide--;
 			// jump to the previous cuepoint
 			var cue = slideshow_data[active_slide]['cue_start'];
-			console.log(active_slide,cue);
 			$player.jPlayer("play", cue);
 		}
 		return false;
