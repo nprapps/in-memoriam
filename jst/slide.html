@@ -1,0 +1,20 @@
+<div id="panel<%= k %>" class="panel" style="background-image: url('http://media.npr.org/assets/music/specials/memoriam2011/images/<%= v["image"] %>');">
+    <div class="panel-description">
+        <h2><%= v["artist_first_name"] %> <%= v["artist_last_name"] %></h2>
+        <p class="dates"><%= v["dob"] %>-<%= v["dod"] %></p>
+        <p class="desc"><%= v["known_as"] %></p>
+        
+        <% if (v["full_obit"].length > 2) { %>
+        <p class="npr-obit">&gt; <a href="http://www.npr.org/templates/story/story.php?storyId=<%= v["full_obit"] %>" target="_blank">NPR Remembrance</a></p>
+        <% } %>
+        
+        <% if (v["artist_page_id"].length > 2) { %>
+        <p class="npr-artist">&gt; <a href="http://www.npr.org/artists/<%= v["artist_page_id"] %>" target="_blank">NPR Artist Page</a></p>
+        <% } %>
+        
+        <p class="now-playing">Now Playing: <%= v["song_name"] %></p>
+        <p class="photo-credit">Photo: <%= v["photo_credit"] %></p>
+				
+    </div>
+</div>
+
