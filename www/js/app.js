@@ -39,10 +39,11 @@ $(document).ready(function() {
 	function load_slideshow_data() {
 		$.getJSON('deaths.json', function(data) {
 			slideshow_data = data;
-			$.each(slideshow_data, function(k,v) {
-                var slide_info = JST.slide({ k: k, v: v });
-				
-				slide_output += slide_info;
+			$.each(slideshow_data, function(k, v) {
+                var context = v;
+                context["id"] = k;
+
+				slide_output += JST.slide(context);
 				
 				num_slides++;
 				
