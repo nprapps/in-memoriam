@@ -203,12 +203,18 @@ def _deploy_to_s3():
     Deploy the gzipped stuff to
     """
     render()
+    _gzip_www()
+
+    # Don't gzip audio files
+    local('rm -r gzip/audio')
 
     s3cmd = 's3cmd -P --add-header=Cache-Control:max-age=5 --add-header=Content-encoding:gzip --guess-mime-type --recursive sync gzip/ %s'
+    s3cmd_audio = 's3cmd -P --add-header=Cache-Control:max-age=5 --guess-mime-type --recursive sync www/audio %s'
 
     for bucket in env.s3_buckets:
         env.s3_bucket = bucket
         local(s3cmd % ('s3://%(s3_bucket)s/%(deployed_name)s/' % env))
+        local(s3cmd_audio % ('s3://%(s3_bucket)s/%(deployed_name)s/' % env))
 
 def _gzip_www():
     """
@@ -221,7 +227,6 @@ def deploy(remote='origin'):
     require('branch', provided_by=[stable, master, branch])
 
     _confirm_branch()
-    _gzip_www()
     _deploy_to_s3()
 
     if env.get('deploy_to_servers', False):
