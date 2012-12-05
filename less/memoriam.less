@@ -1,9 +1,9 @@
 // Global variables
 @img-root: '../img';
 @screen-height: 1100px;
-@slide-bg-color: #111;
-@shade-bg: rgba(0,0,0,.6);
-@shadow: 1px 2px 10px rgba(0,0,0,.6);
+@slide-bg-color: #202020;
+@shade-bg: rgba(50,50,50,.6);
+@shadow: 1px 2px 10px rgba(32,32,32,.7);
 
 
 // TEMPLATE
@@ -12,18 +12,18 @@
 
 // TITLE SCREEN
 #title-inner { 
-background: @slide-bg-color url(http://placekitten.com/800/600);
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	background-size:cover;
+	background: @slide-bg-color url('@{img-root}/black_thread.png') repeat;
+	/* Background pattern via Subtle Patterns: http://subtlepatterns.com/black-thread/ */
 	height: @screen-height;
-	padding-top: 20px;
+	padding-top: 60px;
 }
 #title-button {
 	display: block;
-	width: 60%;
+	width: 50%;
 	margin: 0 auto;
 	background: @shade-bg;
+	border: 2px solid rgba(60,60,60,.6);
+	border-radius: 6px;
 	padding: 30px;
 	color: #8b9094;
 	text-decoration: none;
@@ -51,8 +51,30 @@ background: @slide-bg-color url(http://placekitten.com/800/600);
 #audio-navbar {
 	position: static;
 	z-index: 1000;
-	height: 40px;
+	height: 50px;
+	padding: 0 20px;
+	overflow: hidden;
 	background-color: @slide-bg-color;
+	
+	:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+	.branding { 
+		display: inline-block; 
+		padding-right: 20px;
+		padding-top: 13px;
+		float: left;
+	}
+	.branding h2 { 
+		background: url('@{img-root}/hed-in-memoriam-small.png') no-repeat;
+		width: 148px; height: 25px;
+		text-indent: -9999px;
+		margin: 0;
+	}
+}
+#audio {
+	float: left;
+	height: 41px;
+	padding-top: 9px;
+	background-color: #333;
 }
 
 
@@ -62,7 +84,7 @@ background: @slide-bg-color url(http://placekitten.com/800/600);
 	color: #fff; font-size: 14px; text-transform: uppercase; font-weight: bold;
 	z-index: 1000; padding: 10px;
 	position: absolute;
-	top: 1215px;
+	top: 1255px;
 }
 .nav-btn:hover {
 	background-color: @slide-bg-color;

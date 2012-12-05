@@ -56,6 +56,7 @@ $(document).ready(function() {
 							scrollElement: $s,
 							scrollTarget: '#panel' + k
 						});
+						active_slide = k;
 						return false;
 					},
 					onEnd: function( options ) {}
@@ -86,7 +87,6 @@ $(document).ready(function() {
 	$next.click(function() {
 		if (active_slide < num_slides) {
 			active_slide++;
-			console.log(active_slide);
 			// jump to the next cuepoint
 			var cue = slideshow_data[active_slide]['cue_start'];
 			$player.jPlayer("play", slideshow_data[active_slide]['cue_start']);

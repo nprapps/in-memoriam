@@ -23,7 +23,7 @@ div.jp-audio {
 }
 
 div.jp-audio {
-	width: 360px;
+	width: 400px;
 }
 
 div.jp-interface {
@@ -78,7 +78,7 @@ div.jp-progress-container {
 	position: absolute;
 	top: 0;
 	left: 34px;
-	width: 225px;
+	width: 125px;
 	height: 6px;
 	padding: 12px 10px;
 }
@@ -87,7 +87,7 @@ div.jp-progress {
 	overflow:hidden;
 }
 div.jp-audio div.jp-type-single div.jp-progress {
-	width: 223px;
+	width: 125px;
 	height: 7px;
 	padding: 1px;
 	background: url("../img/jplayer-black-blue.png") 0 -192px repeat-x ;
@@ -120,7 +120,7 @@ div.jp-seeking-bg {
 div.jp-volume-bar-container {
 	position: absolute;
 	top: 0;
-	left: 281px;
+	left: 323px;
 	width: 40px;
 	height: 6px;
 	padding: 12px 10px;
@@ -182,4 +182,12 @@ div.jp-jplayer {
 
 div.jp-jplayer {
 	background-color: #000000;
+}
+
+div.jp-current-time {
+	position: absolute;
+	left: 190px;
+	top: 6px;
+	width: 40px;
+	font-size: 11px;
 }
