@@ -29,8 +29,8 @@ $(document).ready(function() {
 			$(this).jPlayer("pause");
 		},
 		swfPath: "js",
-		supplied: "oga, mp3",
-		//errorAlerts:true
+		supplied: "oga, mp3"
+//		,errorAlerts:true
 	});
 	pop = Popcorn('#jp_audio_0');
 		
@@ -81,50 +81,6 @@ $(document).ready(function() {
 			});
 			
 			$s.append('<div id="slideshow-wrap">' + slide_output + '</div>');
-
-			$next.click(function() {
-				if (active_slide < num_slides) {
-					active_slide++;
-					// jump to the next cuepoint
-					var cue = slideshow_data[active_slide]['cue_start']
-					console.log(active_slide,cue);
-					$player.jPlayer("play", cue);
-					/*
-					$.smoothScroll({
-						speed: 800,
-						direction: 'left',
-						scrollElement: $s,
-						scrollTarget: '#panel' + active_slide,
-						afterScroll: function() {
-							$player.jPlayer("play", slideshow_data[active_slide]['cue_start']);
-						}
-					});
-					*/
-				}
-				return false;
-			});
-
-			$back.click(function() {
-				if (active_slide > 0) {
-					active_slide--;
-					// jump to the previous cuepoint
-					var cue = slideshow_data[active_slide]['cue_start']
-					console.log(active_slide,cue);
-					$player.jPlayer("play", cue);
-					/*
-					$.smoothScroll({
-						speed: 800,
-						direction: 'left',
-						scrollElement: $s,
-						scrollTarget: '#panel' + active_slide,
-						afterScroll: function() {
-							$player.jPlayer("play", slideshow_data[active_slide]['cue_start']);
-						}
-					});
-					*/
-				}
-				return false;
-			});
 		});
 	}
 	
@@ -140,6 +96,27 @@ $(document).ready(function() {
 				$player.jPlayer("play", 0);
 			}
 		});
+		return false;
+	});
+
+	$next.click(function() {
+		if (active_slide < num_slides) {
+			active_slide++;
+			// jump to the next cuepoint
+			var cue = slideshow_data[active_slide]['cue_start'];
+			$player.jPlayer("play", slideshow_data[active_slide]['cue_start']);
+		}
+		return false;
+	});
+
+	$back.click(function() {
+		if (active_slide > 0) {
+			active_slide--;
+			// jump to the previous cuepoint
+			var cue = slideshow_data[active_slide]['cue_start'];
+			console.log(active_slide,cue);
+			$player.jPlayer("play", cue);
+		}
 		return false;
 	});
 
