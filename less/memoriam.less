@@ -42,26 +42,48 @@ background: @slide-bg-color url(http://placekitten.com/800/600);
 		margin-bottom: 0;
 		outline: none;
 	}
+	h2:hover { color: #8b9094; }
 	h5, p { font: italic normal 24px/1.5 Georgia, serif; }
-	
 }
 
 
 // SLIDESHOW
 #slideshow { 
 	color: #fff;
+	position: relative;
+	height: @screen-height;
+	overflow-y: hidden; overflow-x: hidden;
 	
 	a { color: #fff; font-weight: bold; }
+	.nav-btn  { 
+		background-color: @shade-bg; 
+		color: #fff; font-size: 14px; text-transform: uppercase; font-weight: bold;
+		z-index: 1000; padding: 10px;
+		display: none;
+	}
+	.nav-btn:hover {
+		background-color: @slide-bg-color;
+		cursor: pointer;
+	}
+	#next-btn { position: fixed; right: 0; top: 0; }
+	#back-btn { position: fixed; left: 0; top: 0; }
 }
-.slideshow_item {
+#slideshow-wrap {
+	z-index: 999;
+	width: 66000px;
+	height: @screen-height;
+	overflow-y: hidden; overflow-x: scroll;
+}
+.panel {
 	background-color: @slide-bg-color;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	background-size:cover;
+	-webkit-background-size:cover; -moz-background-size:cover; background-size:cover;
+	width: 1700px;
 	height: @screen-height;
 	position: relative;
+	overflow-y: hidden; overflow-x: scroll;
+	float: left;
 }
-.slide_description {
+.panel-description {
 	display: block;
 	width: 30%;
 	margin-top: 50px;
