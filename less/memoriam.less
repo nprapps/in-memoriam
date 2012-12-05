@@ -47,6 +47,15 @@ background: @slide-bg-color url(http://placekitten.com/800/600);
 }
 
 
+// AUDIO NAV
+#audio-navbar {
+	position: static;
+	z-index: 1000;
+	height: 40px;
+	background-color: @slide-bg-color;
+}
+
+
 // SLIDESHOW
 #slideshow { 
 	color: #fff;
@@ -65,8 +74,8 @@ background: @slide-bg-color url(http://placekitten.com/800/600);
 		background-color: @slide-bg-color;
 		cursor: pointer;
 	}
-	#next-btn { position: fixed; right: 0; top: 0; }
-	#back-btn { position: fixed; left: 0; top: 0; }
+	#next-btn { position: fixed; right: 0; top: 60px; }
+	#back-btn { position: fixed; left: 0; top: 60px; }
 }
 #slideshow-wrap {
 	z-index: 999;
