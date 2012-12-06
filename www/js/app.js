@@ -124,14 +124,10 @@ $(document).ready(function() {
 			speed: 800,
 			scrollTarget: $('#audio-navbar'),
 			afterScroll: function() {
-				$next.show();
-				$back.show();
-
-                if (play_audio) {
-				    $player.jPlayer("play");
-                }
+                play_slide(0);
 			}
 		});
+
 		return false;
 	});
 
