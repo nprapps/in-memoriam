@@ -132,13 +132,15 @@ def render():
             f.write(content)
 
 def cut_mugs():
+    from shutil import rmtree
+
     from PIL import Image
 
     output_dir = 'www/img/mugs'
-    widths = [138, 300, 462]
+    widths = [480, 979, 1200]
 
-    if not os.path.exists(output_dir):
-        os.mkdir(output_dir)
+    rmtree(output_dir)
+    os.mkdir(output_dir)
 
     for path in glob('mugs/*.jpg'):
         filename = os.path.split(path)[-1]

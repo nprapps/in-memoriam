@@ -9,21 +9,23 @@ $(document).ready(function() {
     var play_audio = !($.browser.msie === true && $.browser.version < 9);
 
 	/* ELEMENTS */
+    var $main_content = $('#main-content');
 	var $s = $('#slideshow');
 	var $slide_nav = $('#slide-nav');
 	var $next = $('#next-btn');
 	var $back = $('#back-btn');
+    var $audio = $('#audio');
 	var $player = $('#pop-audio');
 
     if (!play_audio) {
-        $("#audio").hide(); 
+        $audio.hide(); 
     }
 
     if (play_audio) {
         /* LOAD AUDIO PLAYER */
         $player.jPlayer({
             ready: function () {
-                $(this).jPlayer("setMedia", {
+                $(this).jPlayer('setMedia', {
                     mp3: "http://stage-apps.npr.org/in-memoriam/audio/FalconHood.mp3",
                     oga: "http://stage-apps.npr.org/in-memoriam/audio/FalconHood.ogg"
                 }).jPlayer("pause");
@@ -64,7 +66,7 @@ $(document).ready(function() {
          * Play a slide at the correct audio cue.
          */
         if (play_audio) {
-            $player.jPlayer("play", slideshow_data[id]['cue_start']);
+            $player.jPlayer('play', slideshow_data[id]['cue_start']);
         } else {
             scroll_to_slide(id);
         }
@@ -84,8 +86,17 @@ $(document).ready(function() {
 				// Markup for this slide and its entry in the slide nav
 				// via Underscore template / JST
                 var context = v;
-                context["id"] = k;
-                context["position"] = slide_position;
+                context['id'] = k;
+
+                if ($main_content.width() <= 480) {
+                    context['image_width'] = 480;
+                } else if ($main_content.width() <= 979) {
+                    context['image_width'] = 979;
+                } else {
+                    context['image_width'] = 1200;
+                }
+
+                context['position'] = slide_position;
 				slide_output += JST.slide(context);
 				audio_output += JST.slidenav(context);
 				
