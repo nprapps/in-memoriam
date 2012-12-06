@@ -80,6 +80,11 @@ $(document).ready(function() {
 			
 			$s.append('<div id="slideshow-wrap">' + slide_output + '</div>');
 			$slide_nav.append(audio_output);
+			
+			$slide_nav.find('.slide-nav-item').click( function() {
+				var id = $(this).attr('data-id');
+				$player.jPlayer("play", slideshow_data[id]['cue_start']);
+			});
 		});
 	}
 	
