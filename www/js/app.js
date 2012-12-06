@@ -41,20 +41,33 @@ $(document).ready(function() {
         // Associate jPlayer with Popcorn
         pop = Popcorn('#jp_audio_0');
     }
-		
 
-    function scroll_to_slide(i) {
+    function scroll_to_slide(id) {
+        /*
+         * Scroll horizontally to the correct slide position.
+         */
         $.smoothScroll({
             direction: 'left',
             scrollElement: $s,
-            scrollTarget: '#panel' + i,
+            scrollTarget: '#panel' + id,
             afterScroll: function() {
-                $('#s' + i).addClass('active').siblings('li').removeClass('active');
+                $('#s' + id).addClass('active').siblings('li').removeClass('active');
             }
         });
-        active_slide = i;
+        active_slide = id;
 
         return false;
+    }
+
+    function play_slide(id) {
+        /*
+         * Play a slide at the correct audio cue.
+         */
+        if (play_audio) {
+            $player.jPlayer("play", slideshow_data[id]['cue_start']);
+        } else {
+            scroll_to_slide(id);
+        }
     }
 
 	/* LOAD SLIDESHOW DATA FROM EXTERNAL JSON */
@@ -99,11 +112,7 @@ $(document).ready(function() {
 			$slide_nav.find('.slide-nav-item').click( function() {
 				var id = $(this).attr('data-id');
 
-                if (play_audio) {
-				    $player.jPlayer("play", slideshow_data[id]['cue_start']);
-                } else {
-                    scroll_to_slide(id);
-                }
+                play_slide(id);
 			});
 		});
 	}
@@ -128,16 +137,7 @@ $(document).ready(function() {
 
 	$next.click(function() {
 		if (active_slide < num_slides) {
-			active_slide++;
-            
-            if (play_audio) {
-			    // jump to the next cuepoint
-			    var cue = slideshow_data[active_slide]['cue_start'];
-
-			    $player.jPlayer("play", slideshow_data[active_slide]['cue_start']);
-            } else {
-                scroll_to_slide(active_slide);
-            }
+            play_slide(active_slide + 1);
 		}
 
 		return false;
@@ -145,17 +145,7 @@ $(document).ready(function() {
 
 	$back.click(function() {
 		if (active_slide > 0) {
-			active_slide--;
-            
-            if (play_audio) {
-			    // jump to the previous cuepoint
-			    var cue = slideshow_data[active_slide]['cue_start'];
-
-			    $player.jPlayer("play", cue);
-            } else {
-                scroll_to_slide(active_slide);
-            }
-
+            play_slide(active_slide - 1);
 		}
 
 		return false;
