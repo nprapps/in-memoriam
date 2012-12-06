@@ -131,6 +131,31 @@ def render():
         with open(filename, 'w') as f:
             f.write(content)
 
+def cut_mugs():
+    from PIL import Image
+
+    output_dir = 'www/img/mugs'
+    widths = [138, 300, 462]
+
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
+
+    for path in glob('mugs/*.jpg'):
+        filename = os.path.split(path)[-1]
+        name = os.path.splitext(filename)[0]
+
+        original = Image.open(path)
+
+        for width in widths:
+            output_path = os.path.join(output_dir, '%s_%i.jpg' % (name, width)) 
+
+            width_pct = width / float(original.size[0])
+            height = int(float(original.size[1] * width_pct))
+
+            img = original.resize((width, height), Image.ANTIALIAS)
+            img.save(output_path)
+
+
 """
 Setup
 """
