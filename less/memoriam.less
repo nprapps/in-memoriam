@@ -1,9 +1,11 @@
 // Global variables
 @img-root: '../img';
-@screen-height: 1100px;
-@slide-bg-color: #202020;
+@screen-height: 1000px;
+@slide-bg-color: #262626;
 @shade-bg: rgba(50,50,50,.6);
 @shadow: 1px 2px 10px rgba(32,32,32,.7);
+@text-gray: #8b9094;
+@nav-border: #39393a;
 
 
 // TEMPLATE
@@ -25,7 +27,7 @@
 	border: 2px solid rgba(60,60,60,.6);
 	border-radius: 6px;
 	padding: 30px;
-	color: #8b9094;
+	color: @text-gray;
 	text-decoration: none;
 	text-shadow: @shadow;
 	
@@ -42,7 +44,7 @@
 		margin-bottom: 0;
 		outline: none;
 	}
-	h2:hover { color: #8b9094; }
+	h2:hover { color: @text-gray; }
 	h5, p { font: italic normal 24px/1.5 Georgia, serif; }
 }
 
@@ -55,17 +57,18 @@
 	padding: 0 20px;
 	overflow: hidden;
 	background-color: @slide-bg-color;
+	border-top: 2px solid #222;
 	
 	:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 	.branding { 
 		display: inline-block; 
-		padding-right: 20px;
-		padding-top: 13px;
+		padding-right: 30px;
+		padding-top: 10px;
 		float: left;
 	}
 	.branding h2 { 
 		background: url('@{img-root}/hed-in-memoriam-small.png') no-repeat;
-		width: 148px; height: 25px;
+		width: 242px; height: 30px;
 		text-indent: -9999px;
 		margin: 0;
 	}
@@ -74,24 +77,33 @@
 	float: left;
 	height: 41px;
 	padding-top: 9px;
-	background-color: #333;
+//	background-color: #333;
+	border-left: 1px solid @nav-border;
+	border-right: 1px solid @nav-border;
 }
 
 
 // BACK & NEXT
 .nav-btn  { 
-	background-color: @shade-bg; 
-	color: #fff; font-size: 14px; text-transform: uppercase; font-weight: bold;
-	z-index: 1000; padding: 10px;
+//	background-color: #343434;
+	border-left: 1px solid @nav-border;
+	color: #88919a;
+	font-size: 12px; 
+	text-transform: uppercase; 
+	font-weight: bold;
+	text-align: center;
+	z-index: 1000; padding: 15px 10px;
 	position: absolute;
-	top: 1255px;
+	top: 1104px;
+	width: 60px; height: 20px;
 }
 .nav-btn:hover {
-	background-color: @slide-bg-color;
+	background-color: #33363b;
+	color: #b0b0b0;
 	cursor: pointer;
 }
 #next-btn { right: 0; }
-#back-btn { left: 0; }
+#back-btn { right: 81px; }
 
 
 // SLIDESHOW
@@ -112,7 +124,7 @@
 .panel {
 	background-color: @slide-bg-color;
 	-webkit-background-size:cover; -moz-background-size:cover; background-size:cover;
-	width: 1700px;
+	width: 1500px;
 	height: @screen-height;
 	position: relative;
 	overflow-y: hidden; overflow-x: scroll;

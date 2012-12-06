@@ -16,14 +16,14 @@
  */
 
 div.jp-audio {
-	font-size: 1em;
-	font-family: Verdana, Arial, sans-serif;
+	font-size: .9em;
+	font-family: Arial, sans-serif;
 	color: #fff;
 	line-height: 1.6;
 }
 
 div.jp-audio {
-	width: 400px;
+	width: 330px;
 }
 
 div.jp-interface {
@@ -120,7 +120,7 @@ div.jp-seeking-bg {
 div.jp-volume-bar-container {
 	position: absolute;
 	top: 0;
-	left: 323px;
+	left: 245px;
 	width: 40px;
 	height: 6px;
 	padding: 12px 10px;
@@ -158,7 +158,7 @@ a.jp-unmute {
 div.jp-audio div.jp-type-single a.jp-mute,
 div.jp-audio div.jp-type-single a.jp-unmute {
 	top: 9px;
-	left: 290px;
+	left: 250px;
 }
 
 a.jp-mute {
@@ -189,5 +189,5 @@ div.jp-current-time {
 	left: 190px;
 	top: 6px;
 	width: 40px;
-	font-size: 11px;
+	color: #8b9094;
 }
