@@ -1,20 +1,21 @@
 $(document).ready(function() {
 	/* VARS */
 	var active_slide = 0;
-	var slideshow_data = [];
-	var slide_output = '';
+	// NOTE: We have more cuepoints than the length of the placeholder audio file we have
+	var audio_length = 660; // TODO: Pass in dynamically somehow?
 	var num_slides = 0;
-	var pop;
+	var slideshow_data = [];
+	var pop; // Popcorn element
 
 	/* ELEMENTS */
 	var $s = $('#slideshow');
-	var $sw = $('#slideshow-wrap');
+	var $slide_nav = $('#slide-nav');
 	var $next = $('#next-btn');
 	var $back = $('#back-btn');
 	var $player = $('#pop-audio');
 
 
-	/* LOAD PLAYER */
+	/* LOAD AUDIO PLAYER */
 	$player.jPlayer({
 		ready: function () {
 			$(this).jPlayer("setMedia", {
@@ -32,21 +33,32 @@ $(document).ready(function() {
 		supplied: "oga, mp3"
 //		,errorAlerts:true
 	});
+	// Associate jPlayer with Popcorn
 	pop = Popcorn('#jp_audio_0');
 		
 
 	/* LOAD SLIDESHOW DATA FROM EXTERNAL JSON */
 	function load_slideshow_data() {
+		var slide_output = '';
+		var audio_output = '';
+
 		$.getJSON('deaths.json', function(data) {
 			slideshow_data = data;
 			$.each(slideshow_data, function(k, v) {
+			
+				var slide_position = (v["cue_start"] / audio_length) * 100;
+
+				// Markup for this slide and its entry in the slide nav
+				// via Underscore template / JST
                 var context = v;
                 context["id"] = k;
-
+                context["position"] = slide_position;
 				slide_output += JST.slide(context);
+				audio_output += JST.slidenav(context);
 				
 				num_slides++;
 				
+				// Popcorn cuepoint for this slide
 				pop.code({
 					start: v["cue_start"],
 					end: v["cue_start"] + .5,
@@ -54,18 +66,20 @@ $(document).ready(function() {
 						$.smoothScroll({
 							direction: 'left',
 							scrollElement: $s,
-							scrollTarget: '#panel' + k
+							scrollTarget: '#panel' + k,
+							afterScroll: function() {
+								$('#s' + k).addClass('active').siblings('li').removeClass('active');
+							}
 						});
 						active_slide = k;
 						return false;
 					},
 					onEnd: function( options ) {}
 				});
-
-				
 			});
 			
 			$s.append('<div id="slideshow-wrap">' + slide_output + '</div>');
+			$slide_nav.append(audio_output);
 		});
 	}
 	
