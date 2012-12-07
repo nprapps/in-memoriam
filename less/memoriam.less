@@ -1,5 +1,6 @@
 // Global variables
 @img-root: '../img';
+@slide-width: 1500px;
 @screen-height: 1000px;
 @slide-bg-color: #262626;
 @shade-bg: rgba(50,50,50,.6);
@@ -17,12 +18,12 @@ body { background-color: @slide-bg-color }
 
 
 // TITLE SCREEN
-#title-inner { 
+#titlecard { 
+	height: @screen-height;
 	background: @slide-bg-color url('@{img-root}/black_thread.png') repeat;
 	/* Background pattern via Subtle Patterns: http://subtlepatterns.com/black-thread/ */
-	height: @screen-height;
-	padding-top: 60px;
 }
+#title-inner { padding-top: 60px; }
 #title-button {
 	display: block;
 	width: 50%;
@@ -104,8 +105,6 @@ body { background-color: @slide-bg-color }
 .slide-nav-item:hover { background-color: #33363b; }
 .slide-nav-item.active { background-color: @text-gray; }
 
-
-// BACK & NEXT
 .nav-btn  { 
 //	background-color: #343434;
 	border-left: 1px solid @nav-border;
@@ -116,7 +115,7 @@ body { background-color: @slide-bg-color }
 	text-align: center;
 	z-index: 1000; padding: 15px 10px;
 	position: absolute;
-	top: 1104px;
+	top: 1044px;
 	width: 60px; height: 20px;
 }
 .nav-btn:hover {
@@ -146,7 +145,7 @@ body { background-color: @slide-bg-color }
 .panel {
 	background-color: @slide-bg-color;
 	-webkit-background-size:cover; -moz-background-size:cover; background-size:cover;
-	width: 1500px;
+	width: @slide-width;
 	height: @screen-height;
 	position: relative;
 	overflow-y: hidden; overflow-x: scroll;
@@ -170,4 +169,29 @@ body { background-color: @slide-bg-color }
 	.now-playing, .photo-credit { font: normal normal 12px Arial, Helvetica, sans-serif; color: #aaa; }
 	.now-playing { margin-top: 20px; margin-bottom: 5px; }
 	.photo-credit { margin-bottom: 0; }
+}
+
+
+// MEDIA QUERIES
+@media (max-width: 979px) {
+	@slide-width: 980px;
+	@screen-height: 600px;
+
+	#titlecard, #slideshow, #slideshow-wrap { height: @screen-height; }
+	.panel { width: @slide-width; height: @screen-height; }
+}
+@media (max-width: 480px) {
+	@slide-width: 480px;
+	@screen-height: 320px;
+	
+	#titlecard, #slideshow, #slideshow-wrap { height: @screen-height; }
+	.panel { width: @slide-width; height: @screen-height; }
+	#title-inner { padding: 20px; }
+	#title-button { 
+		width: auto; border: none; background: none; padding: 0;
+		
+		h1 { background-image: url('@{img-root}/hed-in-memoriam-mobile.png'); height: 47px; }
+		h2 { font-size: 24px; }
+		h5, p { font-size: 16px; }
+	}
 }
