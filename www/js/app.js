@@ -19,6 +19,7 @@ $(document).ready(function() {
 	var $player = $('#pop-audio');
     var $browse_modal = $('#browse-modal');
 	var $progress = $audio.find('.jp-progress-container');
+	var $audio_branding = $('#audio-navbar').find('.branding');
 
     if (!play_audio) {
         $audio.hide(); 
@@ -150,7 +151,17 @@ $(document).ready(function() {
                 play_slide(0);
 			}
 		});
-
+		return false;
+	});
+	
+	$audio_branding.click(function() {
+		if (play_audio) {
+            $player.jPlayer('stop');
+        }
+    	$.smoothScroll({
+			speed: 800,
+			scrollTarget: $('#top')
+		});
 		return false;
 	});
 
@@ -162,7 +173,6 @@ $(document).ready(function() {
 		if (active_slide < num_slides) {
             play_slide(active_slide + 1);
 		}
-
 		return false;
 	});
 
@@ -170,7 +180,6 @@ $(document).ready(function() {
 		if (active_slide > 0) {
             play_slide(active_slide - 1);
 		}
-
 		return false;
 	});
 
