@@ -94,17 +94,25 @@ body { background-color: @slide-bg-color }
 	position: relative;
 }
 .slide-nav-item {
-	padding: 0; margin: 0 0 0 -2px;
-	width: 6px; height: 6px; overflow: hidden;
-	background-color: @nav-border;
-	border-radius: 3px;
-	position: absolute; top: 21px;
+	width: 16px; height: @audio-height;
+	overflow: hidden;
 	cursor: pointer;
+	padding: 0;
+	margin-left: -5px;
+	position: absolute; top: 0;
 	
-	span { display: none; }
+	span { 
+		display: block;
+		width: 6px; height: 6px;
+		background-color: @nav-border;
+		border-radius: 3px;
+		margin: 21px auto 0 auto;
+		text-indent: -9999px;
+	}
 }
 .slide-nav-item:hover { background-color: @nav-button-hover; }
-.slide-nav-item.active { background-color: @text-gray; }
+.slide-nav-item:hover span { background-color: @text-gray; }
+.slide-nav-item.active span { background-color: @text-gray; }
 
 .nav-btn  { 
 	border-left: 1px solid @nav-border;
