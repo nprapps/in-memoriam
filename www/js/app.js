@@ -2,7 +2,8 @@ $(document).ready(function() {
 	/* VARS */
 	var active_slide = 0;
 	// NOTE: We have more cuepoints than the length of the placeholder audio file we have
-	var audio_length = 660; // TODO: Pass in dynamically somehow?
+//	var audio_length = 660;
+	var audio_length = 326; // TODO: Pass in dynamically somehow?
 	var num_slides = 0;
 	var slideshow_data = [];
 	var pop; // Popcorn element

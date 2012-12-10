@@ -93,7 +93,7 @@ body { background-color: @slide-bg-color }
 	position: relative;
 }
 .slide-nav-item {
-	padding: 0; margin: 0;
+	padding: 0; margin: 0 0 0 -2px;
 	width: 6px; height: 6px; overflow: hidden;
 	background-color: @nav-border;
 	border-radius: 3px;
@@ -106,7 +106,6 @@ body { background-color: @slide-bg-color }
 .slide-nav-item.active { background-color: @text-gray; }
 
 .nav-btn  { 
-//	background-color: @nav-button-color;
 	border-left: 1px solid @nav-border;
 	color: #88919a;
 	font-size: 12px; 
@@ -170,13 +169,16 @@ div.jp-interface { position: relative; width: 100%; height: 100%; }
 }
 
 div.jp-progress-container { 
-	width: 457px; 
+	width: 452px;
+	padding-left: 5px;
 	height: 100%; 
 	float: left;
+	position: relative;
+	background-color: @nav-button-color;
 }
-div.jp-progress { position: absolute; overflow:hidden; width: 100%; height: 100%; }
-div.jp-seek-bar { width: 0px; height: 100%; }
-div.jp-play-bar { width: 0px; height: 100%; background-color: @nav-button-color; border-right: 1px solid @nav-border; }
+div.jp-progress { overflow: hidden; width: 100%; height: @audio-height; background-color: @slide-bg-color; position: absolute; top: 0; left: 0; }
+div.jp-seek-bar { width: 0px; height: @audio-height; }
+div.jp-play-bar { width: 0px; height: @audio-height; background-color: @nav-button-color; border-right: 1px solid @nav-border; }
 
 div.jp-current-time { 
 	float: right; 
