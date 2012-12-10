@@ -7,6 +7,9 @@
 @shadow: 1px 2px 10px rgba(32,32,32,.7);
 @text-gray: #8b9094;
 @nav-border: #39393a;
+@audio-height: 50px;
+@nav-button-color: #343434;
+@nav-button-hover: #33363b;
 
 
 // TEMPLATE
@@ -58,7 +61,7 @@ body { background-color: @slide-bg-color }
 #audio-navbar {
 	position: static;
 	z-index: 1000;
-	height: 50px;
+	height: @audio-height;
 	padding: 0 20px;
 	overflow: hidden;
 	background-color: @slide-bg-color;
@@ -80,16 +83,13 @@ body { background-color: @slide-bg-color }
 }
 #audio {
 	float: left;
-	height: 41px;
-	padding-top: 9px;
+	height: @audio-height;
 	border-left: 1px solid @nav-border;
 	border-right: 1px solid @nav-border;
 }
 #slide-nav {
 	margin: 0; padding: 0; list-style: none;
-	width: 400px; height: 50px;
-	margin-left: 30px;
-	float: left;
+	width: 100%; height: @audio-height;
 	position: relative;
 }
 .slide-nav-item {
@@ -102,11 +102,11 @@ body { background-color: @slide-bg-color }
 	
 	span { display: none; }
 }
-.slide-nav-item:hover { background-color: #33363b; }
+.slide-nav-item:hover { background-color: @nav-button-hover; }
 .slide-nav-item.active { background-color: @text-gray; }
 
 .nav-btn  { 
-//	background-color: #343434;
+//	background-color: @nav-button-color;
 	border-left: 1px solid @nav-border;
 	color: #88919a;
 	font-size: 12px; 
@@ -119,12 +119,66 @@ body { background-color: @slide-bg-color }
 	width: 60px; height: 20px;
 }
 .nav-btn:hover {
-	background-color: #33363b;
+	background-color: @nav-button-hover;
 	color: #b0b0b0;
 	cursor: pointer;
 }
 #next-btn { right: 0; }
 #back-btn { right: 81px; }
+
+
+/* AUDIO PLAYER */
+div.jp-audio { 
+	font-size: .9em/1.6 Arial, sans-serif; 
+	color: #fff; 
+	width: 600px;
+}
+div.jp-jplayer { width:0px; height:0px; background-color: #000000; }
+div.jp-interface { position: relative; width: 100%; height: 100%; }
+.jp-controls {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 82px;
+	float: left;
+
+	a  { 
+		overflow: hidden; text-indent: -9999px; 
+		display: block; float: left;
+		width: 40px; height: @audio-height;
+		border-right: 1px solid @nav-border; 
+		z-index: 1; outline: none; 
+		background-color: @nav-button-color;
+		background-image: url("../img/jplayer-black-blue.png"); 
+		background-repeat: no-repeat;
+	}
+	a.jp-play         { background-position: 5px 10px; }
+	a.jp-play:hover   { background-position: -28px 10px; background-color: @nav-button-hover; }
+	a.jp-pause        { background-position: 5px -19px; display: none; }
+	a.jp-pause:hover  { background-position: -28px -19px; background-color: @nav-button-hover; }
+	a.jp-mute         { background-position: 5px -50px; }
+	a.jp-mute:hover   { background-position: -28px -50px; background-color: @nav-button-hover; }
+	a.jp-unmute       { background-position: 5px -80px; display: none; }
+	a.jp-unmute:hover { background-position: -28px -80px; background-color: @nav-button-hover; }
+}
+
+div.jp-progress-container { 
+	width: 457px; 
+	height: 100%; 
+	float: left;
+}
+div.jp-progress { position: absolute; overflow:hidden; width: 100%; height: 100%; }
+div.jp-seek-bar { width: 0px; height: 100%; }
+div.jp-play-bar { width: 0px; height: 100%; background-color: @nav-button-color; border-right: 1px solid @nav-border; }
+
+div.jp-current-time { 
+	float: right; 
+	width: 50px; 
+	color: #8b9094; 
+	text-align: center; 
+	padding: 15px 5px 18px 5px;
+	border-left: 1px solid @nav-border;
+}
 
 
 // SLIDESHOW
