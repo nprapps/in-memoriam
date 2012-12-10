@@ -16,6 +16,7 @@ $(document).ready(function() {
 	var $back = $('#back-btn');
     var $audio = $('#audio');
 	var $player = $('#pop-audio');
+    var $browse_modal = $('#browse-modal');
 
     if (!play_audio) {
         $audio.hide(); 
@@ -76,6 +77,7 @@ $(document).ready(function() {
 	function load_slideshow_data() {
 		var slide_output = '';
 		var audio_output = '';
+        var browse_output = '';
 
 		$.getJSON('deaths.json', function(data) {
 			slideshow_data = data;
@@ -99,6 +101,7 @@ $(document).ready(function() {
                 context['position'] = slide_position;
 				slide_output += JST.slide(context);
 				audio_output += JST.slidenav(context);
+				browse_output += JST.browse(context);
 				
 				num_slides++;
 				
@@ -125,10 +128,17 @@ $(document).ready(function() {
 
                 play_slide(id);
 			});
+
+			$browse_modal.find('.modal-body').append(browse_output);
+
+            $browse_modal.find('a').click(function() {
+                play_slide($(this).attr('data-id'));
+                $browse_modal.modal('hide');
+            });
 		});
 	}
 	
-	
+
 	/* CLICK ACTIONS */
 	$('#title-button').click(function() {
 		$.smoothScroll({
@@ -141,6 +151,10 @@ $(document).ready(function() {
 
 		return false;
 	});
+
+    $('#browse-btn').click(function() {
+        $browse_modal.modal(); 
+    });
 
 	$next.click(function() {
 		if (active_slide < num_slides) {
