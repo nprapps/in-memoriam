@@ -17,6 +17,7 @@ $(document).ready(function() {
     var $audio = $('#audio');
 	var $player = $('#pop-audio');
     var $browse_modal = $('#browse-modal');
+	var $progress = $audio.find('.jp-progress-container');
 
     if (!play_audio) {
         $audio.hide(); 
@@ -121,7 +122,7 @@ $(document).ready(function() {
 			});
 			
 			$s.append('<div id="slideshow-wrap">' + slide_output + '</div>');
-			$slide_nav.append(audio_output);
+			$progress.append(audio_output);
 			
 			$slide_nav.find('.slide-nav-item').click( function() {
 				var id = $(this).attr('data-id');
