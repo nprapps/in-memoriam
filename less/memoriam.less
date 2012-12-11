@@ -62,7 +62,7 @@ body { background-color: @slide-bg-color }
 	position: static;
 	z-index: 1000;
 	height: @audio-height;
-	padding: 0 20px;
+	padding: 0 0 0 20px;
 	overflow: hidden;
 	background-color: @slide-bg-color;
 	border-top: 2px solid #222;
@@ -115,32 +115,42 @@ body { background-color: @slide-bg-color }
 .slide-nav-item.active span { background-color: @text-gray; }
 
 .nav-btn  { 
-	border-left: 1px solid @nav-border;
 	color: #88919a;
 	font-size: 12px; 
 	text-transform: uppercase; 
 	font-weight: bold;
 	text-align: center;
-	z-index: 1000; padding: 15px 10px;
-	position: absolute;
-	top: 1044px;
-	width: 60px; height: 20px;
+	z-index: 1000;
+	position: relative;
+	cursor: pointer;
+	outline: none;
+	width: 40px; height: @audio-height;
+	border-right: 1px solid @nav-border; 
+}
+.nav-btn i {
+	display: block;
+	position: absolute; top: 15px; left: 13px;
+	overflow: hidden; 
+	text-indent: -9999px; 
+	opacity: .5;
 }
 .nav-btn:hover {
 	background-color: @nav-button-hover;
 	color: #b0b0b0;
-	cursor: pointer;
 }
-#next-btn { right: 0; }
-#back-btn { right: 81px; }
+.nav-btn:hover i { opacity: .8; }
 
-#browse-btn {
-	border-right: 1px solid @nav-border;
-	width: 40px; height: 20px;
-    position: relative;
-    top: 0px;
-    float: left;
+.nav-btn.back-next {
+	width: 60px; height: 20px;
+	padding: 15px 10px;
+	float: right;
+	border-left: 1px solid @nav-border;
+	border-right: none;
 }
+#browse-btn {
+	float: left;
+}
+
 
 /* AUDIO PLAYER */
 div.jp-audio { 
@@ -157,20 +167,8 @@ div.jp-interface { position: relative; width: 100%; height: 100%; }
 	width: 41px;
 	float: left;
 
-	a  { 
-		overflow: hidden; text-indent: -9999px; 
-		display: block; float: left;
-		width: 40px; height: @audio-height;
-		border-right: 1px solid @nav-border; 
-		z-index: 1; outline: none; 
-		background-color: @nav-button-color;
-		background-image: url("../img/jplayer-black-blue.png"); 
-		background-repeat: no-repeat;
-	}
-	a.jp-play         { background-position: 5px 10px; }
-	a.jp-play:hover   { background-position: -28px 10px; background-color: @nav-button-hover; }
-	a.jp-pause        { background-position: 5px -19px; display: none; }
-	a.jp-pause:hover  { background-position: -28px -19px; background-color: @nav-button-hover; }
+	a  { display: block; }
+	a.jp-play, a.jp-pause { background-color: @nav-button-color; }
 }
 
 div.jp-progress-container { 
