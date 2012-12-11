@@ -1,12 +1,30 @@
 (function(){ window.JST || (window.JST = {}) 
+window.JST["browse"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="browse-artist">\n    <a href="javascript:;" data-id="'+
+( id )+
+'">\n        <img src="img/mugs/'+
+( image_name )+
+'_120.jpg" />\n        <h2>'+
+( artist_first_name )+
+' '+
+( artist_last_name )+
+'</h2>\n    </a>\n</div>\n\n';
+}
+return __p;
+};
+
 window.JST["slide"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<div id="panel'+
 ( id )+
-'" class="panel" style="background-image: url(\'http://media.npr.org/assets/music/specials/memoriam2011/images/'+
-( image )+
-'\');">\n    <div class="panel-description">\n        <h2>'+
+'" class="panel">\n\t<div class="panel-bg" style="background-image: url(\'img/mugs/'+
+( image_name )+
+'_'+
+( image_width )+
+'.jpg\');"> </div>\n    <div class="panel-description">\n        <h2>'+
 ( artist_first_name )+
 ' '+
 ( artist_last_name )+
@@ -33,6 +51,28 @@ __p+='<div id="panel'+
 '</p>\n        <p class="photo-credit">Photo: '+
 ( photo_credit )+
 '</p>\n    </div>\n</div>\n\n';
+}
+return __p;
+};
+
+window.JST["slidenav"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<li id="s'+
+( id )+
+'" class="slide-nav-item" style="left: '+
+( position )+
+'%" title="'+
+( artist_first_name )+
+' '+
+( artist_last_name )+
+'" data-id="'+
+( id )+
+'">\n\t<span>'+
+( artist_first_name )+
+' '+
+( artist_last_name )+
+'</span>\n</li>';
 }
 return __p;
 };
