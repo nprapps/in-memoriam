@@ -12,6 +12,7 @@ $(document).ready(function() {
 	/* ELEMENTS */
     var $main_content = $('#main-content');
 	var $s = $('#slideshow');
+	var $slide_wrap = $('#slideshow-wrap');
 	var $slide_nav = $('#slide-nav');
 	var $next = $('#next-btn');
 	var $back = $('#back-btn');
@@ -20,6 +21,8 @@ $(document).ready(function() {
     var $browse_modal = $('#browse-modal');
 	var $progress = $audio.find('.jp-progress-container');
 	var $audio_branding = $('#audio-navbar').find('.branding');
+	var $panels;
+	var $panel_images;
 
     if (!play_audio) {
         $audio.hide(); 
@@ -44,7 +47,7 @@ $(document).ready(function() {
             supplied: "oga, mp3"
     //		,errorAlerts:true
         });
-        // Associate jPlayer with Popcorn
+        // associate jPlayer with Popcorn
         pop = Popcorn('#jp_audio_0');
     }
 
@@ -123,7 +126,7 @@ $(document).ready(function() {
                 }
 			});
 			
-			$s.append('<div id="slideshow-wrap">' + slide_output + '</div>');
+			$slide_wrap.append(slide_output);
 			$slide_nav.append(audio_output);
 			
 			$slide_nav.find('.slide-nav-item').click( function() {
@@ -138,9 +141,42 @@ $(document).ready(function() {
                 play_slide($(this).attr('data-id'));
                 $browse_modal.modal('hide');
             });
+            
+            $panels = $slide_wrap.find('.panel');
+            $panel_images = $panels.find('.panel-bg');
+
+            resize_slideshow();
 		});
 	}
 	
+	
+	/* RESIZE SLIDESHOW PANELS BASED ON SCREEN WIDTH */
+	function resize_slideshow() {
+		console.log("resize_slideshow");
+		console.log($main_content.width());
+		var new_width = $main_content.width();
+		var new_height = $(window).height() - $audio.height();
+		var height_43 = Math.ceil(($main_content.width() * 3) / 4);
+
+		if (new_width <= 480) {
+			new_height = 600;
+		} else if (new_height > height_43) { 
+			// image ratio can go no larger than 4:3
+			new_height = height_43;
+		}
+
+		$s.width(new_width + 'px').height(new_height + 'px');
+		$slide_wrap.width((num_slides * new_width) + 'px').height(new_height + 'px');
+		$panels.width(new_width + 'px').height(new_height + 'px');
+
+		if (new_width <= 480) {
+			$panel_images.height((Math.ceil(new_width * 9) / 16) + 'px');
+		} else {
+			$panel_images.height('100%');
+		}
+	}
+	$(window).resize(resize_slideshow);
+
 
 	/* CLICK ACTIONS */
 	$('#title-button').click(function() {

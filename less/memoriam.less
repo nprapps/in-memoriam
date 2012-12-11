@@ -198,7 +198,8 @@ body { background-color: @slide-bg-color }
 	color: #fff;
 	position: relative;
 	height: @screen-height;
-	overflow-y: hidden; overflow-x: hidden;
+//	overflow-y: hidden; overflow-x: hidden;
+	overflow: hidden;
 	
 	a { color: #fff; font-weight: bold; }
 }
@@ -206,14 +207,16 @@ body { background-color: @slide-bg-color }
 	z-index: 999;
 	width: 66000px;
 	height: @screen-height;
-	overflow-y: hidden; overflow-x: scroll;
+//	overflow-y: hidden; overflow-x: scroll;
+	overflow: hidden;
 }
 .panel {
 	background-color: @slide-bg-color;
 	width: @slide-width;
 	height: @screen-height;
 	position: relative;
-	overflow-y: hidden; overflow-x: scroll;
+	overflow: hidden;
+//	overflow-y: hidden; overflow-x: scroll;
 	float: left;
 }
 .panel-bg {
@@ -290,9 +293,9 @@ body { background-color: @slide-bg-color }
 	#audio-navbar .branding { display: none; }
 	#slideshow, #slideshow-wrap { height: @screen-height; }
 	.panel { width: @slide-width; height: @screen-height; }
-	.panel-bg { height: 300px; }
+	.panel-bg { height: 300px; position: relative; top: auto; left: auto; }
 	.panel-description { 
-		top: 300px; left: 0; 
+		position: relative; top: auto; left: auto;
 		width: 100%; 
 		background: none; 
 		padding: 20px;
