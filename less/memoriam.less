@@ -153,13 +153,13 @@ body { background-color: @slide-bg-color }
 
 
 /* AUDIO PLAYER */
-div.jp-audio { 
+.jp-audio { 
 	font-size: .9em/1.6 Arial, sans-serif; 
 	color: #fff; 
-	width: 600px;
+	width: 483px;
 }
-div.jp-jplayer { width:0px; height:0px; background-color: #000000; }
-div.jp-interface { position: relative; width: 100%; height: 100%; }
+.jp-jplayer { width:0px; height:0px; background-color: #000000; }
+.jp-interface { position: relative; width: 100%; height: 100%; }
 .jp-controls {
 	list-style-type: none;
 	padding: 0;
@@ -171,19 +171,19 @@ div.jp-interface { position: relative; width: 100%; height: 100%; }
 	a.jp-play, a.jp-pause { background-color: @nav-button-color; }
 }
 
-div.jp-progress-container { 
-	width: 493px;
+.jp-progress-container { 
+	width: 376px;
 	padding-left: 5px;
 	height: 100%; 
 	float: left;
 	position: relative;
 	background-color: @nav-button-color;
 }
-div.jp-progress { overflow: hidden; width: 100%; height: @audio-height; background-color: @slide-bg-color; position: absolute; top: 0; left: 0; }
-div.jp-seek-bar { width: 0px; height: @audio-height; }
-div.jp-play-bar { width: 0px; height: @audio-height; background-color: @nav-button-color; border-right: 1px solid @nav-border; }
+.jp-progress { overflow: hidden; width: 100%; height: @audio-height; background-color: @slide-bg-color; position: absolute; top: 0; left: 0; }
+.jp-seek-bar { width: 0px; height: @audio-height; }
+.jp-play-bar { width: 0px; height: @audio-height; background-color: @nav-button-color; border-right: 1px solid @nav-border; }
 
-div.jp-current-time { 
+.jp-current-time { 
 	float: right; 
 	width: 50px; 
 	color: #8b9094; 
@@ -239,12 +239,32 @@ div.jp-current-time {
 
 
 // MEDIA QUERIES
+@media (min-width: 1200px) {
+	.jp-audio { width: 600px; }
+	.jp-progress-container { width: 493px; }
+}
 @media (max-width: 979px) {
 	@slide-width: 980px;
 	@screen-height: 600px;
 
 	#titlecard, #slideshow, #slideshow-wrap { height: @screen-height; }
 	.panel { width: @slide-width; height: @screen-height; }
+
+	.jp-audio { width: 271px; }
+	.jp-progress-container { width: 225px; }
+}
+@media (max-width: 767px) {
+	.jp-audio { width: auto; }
+	.jp-progress-container { display: none; }
+	#audio-navbar .branding h2 { background-position: -129px 0; width: 113px; }
+	.jp-current-time { border-left: none; }
+	.nav-btn.back-next { padding-left: 0; padding-right: 0; width: 40px; }
+	.back-next b { display: none; }
+/*
+	#audio-navbar { height: 100px; }
+	#audio-navbar .branding { float: none; display: block; margin-left: -20px; padding-left: 20px; padding-bottom: 10px; border-bottom: 1px solid @nav-border; }
+	#audio { clear: left; }
+*/
 }
 @media (max-width: 480px) {
 	@slide-width: 480px;
