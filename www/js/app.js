@@ -21,6 +21,7 @@ $(document).ready(function() {
     var $browse_modal = $('#browse-modal');
 	var $progress = $audio.find('.jp-progress-container');
 	var $audio_branding = $('#audio-navbar').find('.branding');
+	var $titlecard = $('#titlecard');
 	var $panels;
 	var $panel_images;
 
@@ -173,6 +174,7 @@ $(document).ready(function() {
 		$s.width(new_width + 'px').height(new_height + 'px');
 		$slide_wrap.width((num_slides * new_width) + 'px').height(new_height + 'px');
 		$panels.width(new_width + 'px').height(new_height + 'px');
+		$titlecard.height(new_height + 'px');
 
 		if (new_width <= 480) {
 			$panel_images.height((Math.ceil(new_width * 9) / 16) + 'px');
