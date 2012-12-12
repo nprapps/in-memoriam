@@ -132,7 +132,12 @@ $(document).ready(function() {
 			$slide_nav.find('.slide-nav-item').click( function() {
 				var id = $(this).attr('data-id');
 
-                play_slide(id);
+                if ($player.data().jPlayer.status.paused) {
+                    scroll_to_slide(id);
+                    $player.jPlayer('pause', slideshow_data[id]['cue_start']);
+                } else {
+                    play_slide(id);
+                }
 			});
 
 			$browse_modal.find('.modal-body').append(browse_output);
@@ -207,14 +212,28 @@ $(document).ready(function() {
 
 	$next.click(function() {
 		if (active_slide < num_slides) {
-            play_slide(active_slide + 1);
+            var id = active_slide + 1;
+
+            if ($player.data().jPlayer.status.paused) {
+                scroll_to_slide(id);
+                $player.jPlayer('pause', slideshow_data[id]['cue_start']);
+            } else {
+                play_slide(id);
+            }
 		}
 		return false;
 	});
 
 	$back.click(function() {
 		if (active_slide > 0) {
-            play_slide(active_slide - 1);
+            var id = active_slide - 1;
+
+            if ($player.data().jPlayer.status.paused) {
+                scroll_to_slide(id);
+                $player.jPlayer('pause', slideshow_data[id]['cue_start']);
+            } else {
+                play_slide(id);
+            }
 		}
 		return false;
 	});
