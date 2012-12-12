@@ -210,7 +210,7 @@ $(document).ready(function() {
         $browse_modal.modal(); 
     });
 
-	$next.click(function() {
+	function goto_next_slide() {
 		if (active_slide < num_slides) {
             var id = active_slide + 1;
 
@@ -222,9 +222,11 @@ $(document).ready(function() {
             }
 		}
 		return false;
-	});
+	}
 
-	$back.click(function() {
+    $next.click(goto_next_slide);
+
+	function goto_previous_slide() {
 		if (active_slide > 0) {
             var id = active_slide - 1;
 
@@ -236,9 +238,27 @@ $(document).ready(function() {
             }
 		}
 		return false;
-	});
+	}
 
-	
+	$back.click(goto_previous_slide);
+
+    $(document).keydown(function(ev) {
+        if (ev.which == 37) {
+            goto_previous_slide();
+        } else if (ev.which == 39) {
+            goto_next_slide();
+        } else if (ev.which == 32) {
+            if ($player.data().jPlayer.status.paused) {
+                $player.jPlayer('play');
+            } else {
+                $player.jPlayer('pause');
+            }
+
+        }
+
+        return false;
+    });
+
 	/* INIT */
 	load_slideshow_data();
 
