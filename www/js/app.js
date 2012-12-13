@@ -83,6 +83,7 @@ $(document).ready(function() {
         } else {
             scroll_to_slide(id);
         }
+        console.log("play slide: " + id + " | " + slideshow_data[id]['cue_start']);
     }
 
 	/* LOAD SLIDESHOW DATA FROM EXTERNAL JSON */
