@@ -32,8 +32,10 @@ __p+='<div id="panel'+
 ( dob )+
 '-'+
 ( dod )+
-'</p>\n        <p class="desc">'+
+'</p>\n        <p class="desc"><strong>'+
 ( known_as )+
+'</strong>. '+
+( desc )+
 '</p>\n        \n        ';
  if (full_obit.length > 2) { 
 ;__p+='\n        <p class="npr-obit">&gt; <a href="http://www.npr.org/templates/story/story.php?storyId='+
@@ -49,8 +51,10 @@ __p+='<div id="panel'+
 ;__p+='\n        \n        <p class="now-playing">Now Playing: '+
 ( song_name )+
 '</p>\n        <p class="photo-credit">Photo: '+
+( photo_caption )+
+' ('+
 ( photo_credit )+
-'</p>\n    </div>\n</div>\n\n';
+')</p>\n    </div>\n</div>\n\n';
 }
 return __p;
 };
