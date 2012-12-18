@@ -2,7 +2,9 @@
 	<div class="panel-bg" style="background-image: url('img/mugs/<%= image_name %>_<%= image_width %>.jpg');"> </div>
     <div class="panel-description">
         <h2><%= artist_first_name %> <%= artist_last_name %></h2>
-        <p class="dates"><%= dob %>-<%= dod %></p>
+        <% if (dob != '') { %>
+        <p class="dates"><%= dob %> &mdash; <%= dod %></p>
+        <% } %>
         <p class="desc"><strong><%= known_as %></strong>. <%= desc %></p>
         
         <% if (full_obit.length > 2) { %>
