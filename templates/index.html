@@ -15,19 +15,6 @@
 {% block content %}
 
 
-<div id="titlecard">
-	<div id="title">
-		<div id="title-inner">
-			<a id="title-button" href="#">
-				<h5>NPR Music presents</h5>
-				<h1>In Memoriam</h1>
-				<p>NPR Music remembers the singers, instrumentalists, songwriters and producers who died in 2012. Explore the musical legacies they leave behind.</p>
-				<h2>Begin &#9656;</h2>
-			</a>
-		</div>
-	</div>
-</div>
-
 <div id="audio-navbar">
 	<div class="branding">
 		<h2>In Memoriam: 2012</h2>
@@ -51,7 +38,14 @@
 									<div class="jp-play-bar"></div>
 								</div>
 							</div>
-							<ul id="slide-nav"></ul>
+							<ul id="slide-nav">
+								<li id="s0" class="slide-nav-item" style="left: 1%" title="Title Screen: In Memoriam" data-id="">
+									<span>Title Screen: In Memoriam</span>
+								</li>
+								<li id="sclose" class="slide-nav-item" style="left: 99%" title="Credits" data-id="">
+									<span>Credits</span>
+								</li>
+							</ul>
 						</div>
 						<div class="jp-current-time"></div>
 					</div>
@@ -72,7 +66,32 @@
 -->
 </div>
 
-<div id="slideshow"><div id="slideshow-wrap"></div></div>
+<div id="slideshow">
+	<div id="slideshow-wrap">
+
+
+		<div id="panel0" class="panel">
+			<div id="title" class="panelbg">
+				<div id="title-inner">
+					<a id="title-button" href="#">
+						<h5>NPR Music presents</h5>
+						<h1>In Memoriam</h1>
+						<p>NPR Music remembers the singers, instrumentalists, songwriters and producers who died in 2012. Explore the musical legacies they leave behind.</p>
+						<h2>Begin &#9656;</h2>
+					</a>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="panelclose" class="panel">
+			<div class="panelbg">
+				<h2>This Is The Closing Card</h2>
+			</div>
+		</div>
+
+	</div>
+</div>
 {% endblock %}
 
 
