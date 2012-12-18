@@ -80,6 +80,8 @@ $(document).ready(function() {
         /*
          * Scroll horizontally to the correct slide position.
          */
+        slide_list_toggle('close');
+
         $.smoothScroll({
             direction: 'left',
             scrollElement: $s,
@@ -248,23 +250,24 @@ $(document).ready(function() {
 		}
 	}
 	$slide_browse_btn.on('click', function(e){
-		slide_list_toggle()
+		slide_list_toggle();
 	});
 
 	$slide_nav.on('mouseenter', function(e){
-		slide_list_toggle('open')
+		slide_list_toggle('open');
 	});
-	$slide_nav.on('mouseleave', function(e){
-		slide_list_toggle('close')
+	$slide_list.on('mouseleave', function(e){
+		slide_list_toggle('close');
 	});
 
     function goto_slide(id) {
-         if (!play_audio || $player.data().jPlayer.status.paused) {
+        if (!play_audio || $player.data().jPlayer.status.paused) {
             scroll_to_slide(id);
             $player.jPlayer('pause', slideshow_data[id]['cue_start']);
         } else {
             play_slide(id);
         }
+		
         return false; 
     }
 	
