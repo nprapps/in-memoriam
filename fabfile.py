@@ -155,8 +155,12 @@ def cut_mugs():
             height = int(float(original.size[1] * width_pct))
 
             if width == widths[0]:
-                w = original.size[0]
-                h = min(w * 3 / 4, original.size[1])
+                if original.size[1] < original.size[0] * 3 / 4:
+                    h = original.size[1]
+                    w = h * 4 / 3
+                else:
+                    w = original.size[0]
+                    h = w * 3 / 4
 
                 img = original.crop((0, 0, w, h))
             
@@ -165,7 +169,7 @@ def cut_mugs():
             else:
                 img = original
 
-            print 'Cutting %s at %ipx wide' % (name, width)
+            print 'Cutting %s at %ix%i' % (name, width, height)
             img = img.resize((width, height), Image.ANTIALIAS)
             img.save(output_path)
 
