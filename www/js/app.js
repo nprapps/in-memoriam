@@ -130,7 +130,6 @@ $(document).ready(function() {
                 }
 
                 context['position'] = slide_position;
-                console.log(v['dob']);
 
                 if (v['dob'] != '') {
                     context['dob'] = ap_date(moment(v['dob'], 'MM DD YYYY'));
@@ -251,10 +250,11 @@ $(document).ready(function() {
 	$slide_browse_btn.on('click', function(e){
 		slide_list_toggle()
 	});
-	$slide_browse_btn.on('mouseenter', function(e){
+
+	$slide_nav.on('mouseenter', function(e){
 		slide_list_toggle('open')
 	});
-	$slide_list.on('mouseleave', function(e){
+	$slide_nav.on('mouseleave', function(e){
 		slide_list_toggle('close')
 	});
 
