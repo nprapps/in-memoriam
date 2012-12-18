@@ -154,6 +154,7 @@ def cut_mugs():
             width_pct = width / float(original.size[0])
             height = int(float(original.size[1] * width_pct))
 
+            print 'Cutting %s at %ipx wide' % (name, width)
             img = original.resize((width, height), Image.ANTIALIAS)
             img.save(output_path)
 

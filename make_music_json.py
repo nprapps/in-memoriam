@@ -20,7 +20,7 @@ for row in rows[1:]:
         'known_as': row[5],
         'desc': row[6], # NEW
         'full_obit': row[7],
-        'image_name': '', # See below
+        'image_name': '%s_%s', # See below
         'photo_credit': row[9],
         'photo_caption': row[10], # NEW
         'cue_start': 0, # See below
