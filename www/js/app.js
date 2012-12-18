@@ -39,8 +39,8 @@ $(document).ready(function() {
         $player.jPlayer({
             ready: function () {
                 $(this).jPlayer('setMedia', {
-                    mp3: "http://stage-apps.npr.org/in-memoriam/audio/FalconHood.mp3",
-                    oga: "http://stage-apps.npr.org/in-memoriam/audio/FalconHood.ogg"
+                    mp3: "http://stage-apps.npr.org/in-memoriam/audio/artists2012.mp3",
+                    oga: "http://stage-apps.npr.org/in-memoriam/audio/artists2012.ogg"
                 }).jPlayer("pause");
             },
             play: function() { // To avoid both jPlayers playing together.
