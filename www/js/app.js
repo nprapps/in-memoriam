@@ -81,7 +81,6 @@ $(document).ready(function() {
         } else {
             scroll_to_slide(id);
         }
-        console.log("play slide: " + id + " | " + slideshow_data[id]['cue_start']);
     }
 
 	/* LOAD SLIDESHOW DATA FROM EXTERNAL JSON */
@@ -158,8 +157,6 @@ $(document).ready(function() {
 	
 	/* RESIZE SLIDESHOW PANELS BASED ON SCREEN WIDTH */
 	function resize_slideshow() {
-		console.log("resize_slideshow");
-		console.log($main_content.width());
 		var new_width = $main_content.width();
 		var new_height = $(window).height() - $audio.height();
 		var height_43 = Math.ceil(($main_content.width() * 3) / 4);
@@ -234,7 +231,7 @@ $(document).ready(function() {
 	});
 
     function goto_slide(id) {
-         if ($player.data().jPlayer.status.paused) {
+         if (!play_audio || $player.data().jPlayer.status.paused) {
             scroll_to_slide(id);
             $player.jPlayer('pause', slideshow_data[id]['cue_start']);
         } else {
@@ -247,7 +244,7 @@ $(document).ready(function() {
 		if (active_slide < num_slides) {
             var id = active_slide + 1;
 
-            if ($player.data().jPlayer.status.paused) {
+            if (!play_audio || $player.data().jPlayer.status.paused) {
                 scroll_to_slide(id);
                 $player.jPlayer('pause', slideshow_data[id]['cue_start']);
             } else {
@@ -262,7 +259,7 @@ $(document).ready(function() {
 		if (active_slide > 0) {
             var id = active_slide - 1;
 
-            if ($player.data().jPlayer.status.paused) {
+            if (!play_audio || $player.data().jPlayer.status.paused) {
                 scroll_to_slide(id);
                 $player.jPlayer('pause', slideshow_data[id]['cue_start']);
             } else {
@@ -278,7 +275,7 @@ $(document).ready(function() {
             goto_previous_slide();
         } else if (ev.which == 39) {
             goto_next_slide();
-        } else if (ev.which == 32) {
+        } else if (ev.which == 32 && play_audio) {
             if ($player.data().jPlayer.status.paused) {
                 $player.jPlayer('play');
             } else {
