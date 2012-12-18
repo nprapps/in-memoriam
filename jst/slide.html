@@ -3,7 +3,7 @@
     <div class="panel-description">
         <h2><%= artist_first_name %> <%= artist_last_name %></h2>
         <p class="dates"><%= dob %>-<%= dod %></p>
-        <p class="desc"><%= known_as %></p>
+        <p class="desc"><strong><%= known_as %></strong>. <%= desc %></p>
         
         <% if (full_obit.length > 2) { %>
         <p class="npr-obit">&gt; <a href="http://www.npr.org/templates/story/story.php?storyId=<%= full_obit %>" target="_blank">NPR Remembrance</a></p>
@@ -14,7 +14,7 @@
         <% } %>
         
         <p class="now-playing">Now Playing: <%= song_name %></p>
-        <p class="photo-credit">Photo: <%= photo_credit %></p>
+        <p class="photo-credit">Photo: <%= photo_caption %> (<%= photo_credit %>)</p>
     </div>
 </div>
 
