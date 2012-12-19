@@ -3,7 +3,7 @@
 import os
 
 PROJECT_NAME = 'in-memoriam'
-DEPLOYED_NAME = PROJECT_NAME 
+DEPLOYED_NAME = 'music-memoriam-2012' 
 
 PRODUCTION_S3_BUCKETS = ['apps.npr.org', 'apps2.npr.org']
 PRODUCTION_SERVERS = ['cron.nprapps.org']
