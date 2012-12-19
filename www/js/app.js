@@ -196,13 +196,13 @@ $(document).ready(function() {
 			$('#panelclose').attr('id','panel' + close_id);
 			
 			$slide_nav.find('.slide-nav-item').click( function() {
-				var id = $(this).attr('data-id');
+				var id = parseInt($(this).attr('data-id'));
                 goto_slide(id);
 			});
 
 			$slide_list.append(browse_output);
             $slide_list.find('a').click(function() {
-				var id = $(this).attr('data-id');
+				var id = parseInt($(this).attr('data-id'));
                 goto_slide(id);
                 slide_list_toggle('close');
             });
