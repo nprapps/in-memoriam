@@ -116,7 +116,8 @@ $(document).ready(function() {
             scrollElement: $s,
             scrollTarget: '#panel' + id,
             afterScroll: function() {
-                $('#s' + id).addClass('active').siblings('li').removeClass('active');
+                $slide_nav.find('li').removeClass('active');
+                $slide_nav.find('#s' + id).addClass('active');
             }
         });
         active_slide = id;
@@ -197,7 +198,7 @@ $(document).ready(function() {
 			});
 			
 			$titlecard.after(slide_output);
-			$('#s0').after(audio_output);
+			$slide_nav.html(audio_output);
 			
 			num_slides += 2; // because we have both a title slide and a closing slide
 			// rename the closing slides with the correct ID numbers
