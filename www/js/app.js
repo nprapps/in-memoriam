@@ -176,7 +176,7 @@ $(document).ready(function() {
                 slide_output += JST.slide(context);
 				audio_output += JST.slidenav(context);
 				browse_output += JST.browse(context);
-				
+
 				num_slides++;
 				
                 if (audio_supported) {
@@ -200,6 +200,13 @@ $(document).ready(function() {
 			$titlecard.after(slide_output);
 			$slide_nav.html(audio_output);
 			
+			browse_output += JST.browse({
+                'id': '999',
+                'image_name': null,
+                'artist_first_name': '',
+                'artist_last_name': 'Index & Credits'
+            });
+
 			num_slides += 2; // because we have both a title slide and a closing slide
 			// rename the closing slides with the correct ID numbers
 			var end_id = num_slides-1;
