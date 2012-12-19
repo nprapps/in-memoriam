@@ -147,7 +147,7 @@ $(document).ready(function() {
         var browse_output = '';
 
 		$.getJSON('deaths.json', function(data) {
-			slideshow_data.push('0');
+			slideshow_data.push(undefined);
 			$.each(data, function(k, v) {
 				slideshow_data.push(v);
 			
