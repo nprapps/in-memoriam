@@ -236,12 +236,28 @@ $(document).ready(function() {
 				var id = parseInt($(this).attr('data-id'));
                 goto_slide(id);
 			});
+	
+            $slide_nav.find('.slide-nav-item').hover(function() {
+				var id = parseInt($(this).attr('data-id'));
+                $slide_list.find('a[data-id="' + id + '"]').addClass('active');
+            }, function() {
+				var id = parseInt($(this).attr('data-id'));
+                $slide_list.find('a[data-id="' + id + '"]').removeClass('active');
+            });
 
 			$slide_list.append(browse_output);
             $slide_list.find('a').click(function() {
 				var id = parseInt($(this).attr('data-id'));
                 goto_slide(id);
                 slide_list_toggle('close');
+            });
+
+            $slide_list.find('a').hover(function() {
+				var id = parseInt($(this).attr('data-id'));
+                $slide_nav.find('.slide-nav-item[data-id="' + id + '"]').addClass('active');
+            }, function() {
+				var id = parseInt($(this).attr('data-id'));
+                $slide_nav.find('.slide-nav-item[data-id="' + id + '"]').removeClass('active');
             });
 
 			$slide_list_end.append(browse_output);

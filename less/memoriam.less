@@ -117,6 +117,7 @@ body { background-color: @slide-bg-color }
 	}
 }
 .slide-nav-item:hover { background-color: @nav-button-hover; }
+.slide-nav-item.active { background-color: @nav-button-hover; }
 .slide-nav-item:hover span { background-color: @text-gray; }
 .slide-nav-item.active span { background-color: @text-gray; }
 
@@ -205,6 +206,7 @@ body { background-color: @slide-bg-color }
 	a { color: @nav-text-color; display: block; padding: 5px 10px; }
 	a:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 	a:hover { color: @nav-text-hover; background-color: @nav-button-hover; text-decoration: none; }
+	a.active { color: @nav-text-hover; background-color: @nav-button-hover; text-decoration: none; }
 }
 .slide-list:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 #list-nav { 
