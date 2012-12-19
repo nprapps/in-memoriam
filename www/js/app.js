@@ -134,8 +134,8 @@ $(document).ready(function() {
         var browse_output = '';
 
 		$.getJSON('deaths.json', function(data) {
-			slideshow_data = data;
-			$.each(slideshow_data, function(k, v) {
+			$.each(data, function(k, v) {
+				slideshow_data[k+1] = [v];
 			
 				var slide_position = (v["cue_start"] / audio_length) * 100;
 
@@ -184,6 +184,7 @@ $(document).ready(function() {
 			$('#s0').after(audio_output);
 			
 			num_slides += 2; // because we have both a title slide and a closing slide
+			// rename the closing slides with the correct ID numbers
 			var close_id = num_slides-1;
 			$('#sclose').attr('id','s' + close_id);
 			$('#s' + close_id).attr('data-id', close_id);
@@ -205,6 +206,8 @@ $(document).ready(function() {
             $panel_images = $panels.find('.panel-bg');
 
             resize_slideshow();
+
+			console.log(slideshow_data);
 		});
 	}
 	
@@ -277,7 +280,7 @@ $(document).ready(function() {
 	});
 	
 	function goto_next_slide() {
-		if (active_slide < num_slides) {
+		if (active_slide < (num_slides-1)) {
             var id = active_slide + 1;
             goto_slide(id);
 		}
