@@ -78,6 +78,25 @@ $(document).ready(function() {
         return out;
     }
 
+    function goto_slide(id) {
+    	/*
+    	 * Determine whether to shift to the next slide
+    	 * with audio, or without audio.
+    	 */
+    	console.log('goto_slide(' + id + ')');
+    	active_slide = Number(id);
+        if (!audio_supported || $player.data().jPlayer.status.paused || slideshow_data[id] == undefined) {
+            scroll_to_slide(id);
+            if (slideshow_data[id] != undefined) {
+				$player.jPlayer('pause', slideshow_data[id]['cue_start']);
+			}
+        } else {
+            play_slide(id);
+        }
+		
+        return false; 
+    }
+
     function scroll_to_slide(id) {
         /*
          * Scroll horizontally to the correct slide position.
@@ -110,20 +129,6 @@ $(document).ready(function() {
         }
     }
 
-    function goto_slide(id) {
-    	console.log('goto_slide(' + id + ')');
-    	active_slide = Number(id);
-        if (!audio_supported || $player.data().jPlayer.status.paused || slideshow_data[id] == undefined) {
-            scroll_to_slide(id);
-            if (slideshow_data[id] != undefined) {
-				$player.jPlayer('pause', slideshow_data[id]['cue_start']);
-			}
-        } else {
-            play_slide(id);
-        }
-		
-        return false; 
-    }
 
 	function load_slideshow_data() {
         /* 
