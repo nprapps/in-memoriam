@@ -201,7 +201,7 @@ $(document).ready(function() {
 			$slide_nav.html(audio_output);
 			
 			browse_output += JST.browse({
-                'id': '999',
+                'id': num_slides + 1,
                 'image_name': null,
                 'artist_first_name': '',
                 'artist_last_name': 'Index & Credits'
