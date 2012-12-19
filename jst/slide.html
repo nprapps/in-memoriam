@@ -15,7 +15,9 @@
         <p class="npr-artist">&gt; <a href="http://www.npr.org/artists/<%= artist_page_id %>" target="_blank">NPR Artist Page</a></p>
         <% } %>
         
-        <p class="now-playing">Now Playing: <%= song_name %></p>
+        <% if (song_name.length > 2) { %>
+		<p class="now-playing">Now Playing: <%= song_name %></p>
+        <% } %>
         <p class="photo-credit">Photo: <%= photo_caption %> (<%= photo_credit %>)</p>
     </div>
 </div>

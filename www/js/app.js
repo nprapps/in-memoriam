@@ -21,6 +21,7 @@ $(document).ready(function() {
 	var $progress = $audio.find('.jp-progress-container');
 	var $player = $('#pop-audio');
 	var $slide_list = $('#list-nav');
+	var $slide_list_end = $('#list-nav-end');
 	var $slide_browse_btn = $('#browse-btn');
 	var $titlecard = $('#panel0');
 	var $panels;
@@ -69,11 +70,13 @@ $(document).ready(function() {
             out = 'June';
         } else if (mmnt.month() == 6) {
             out = 'July';
+        } else if (mmnt.month() == 8) {
+            out = 'Sept.';
         } else {
             out += '.';
         }
 
-        out += ' ' + mmnt.format('Do YYYY');
+        out += ' ' + mmnt.format('D, YYYY');
 
         return out;
     }
@@ -88,7 +91,11 @@ $(document).ready(function() {
         if (!audio_supported || $player.data().jPlayer.status.paused || slideshow_data[id] == undefined) {
             scroll_to_slide(id);
             if (slideshow_data[id] != undefined) {
+            	console.log('advance cue to ' + slideshow_data[id]['cue_start']);
 				$player.jPlayer('pause', slideshow_data[id]['cue_start']);
+			} else if (id == (num_slides - 1)) {
+            	console.log('advance cue to ' + audio_length);
+				$player.jPlayer('pause', audio_length);
 			}
         } else {
             play_slide(id);
@@ -139,8 +146,9 @@ $(document).ready(function() {
         var browse_output = '';
 
 		$.getJSON('deaths.json', function(data) {
+			slideshow_data.push('0');
 			$.each(data, function(k, v) {
-				slideshow_data[k+1] = [v];
+				slideshow_data.push(v);
 			
 				var slide_position = (v["cue_start"] / audio_length) * 100;
 
@@ -171,13 +179,16 @@ $(document).ready(function() {
 				num_slides++;
 				
                 if (audio_supported) {
+                	var cue_start = v["cue_start"];
+                	if (k == 0) {
+                		cue_start += 1;
+                	}
                     // Popcorn cuepoint for this slide
                     pop.code({
-                        start: v["cue_start"],
-                        end: v["cue_start"] + .5,
+                        start: cue_start,
+                        end: cue_start + .5,
                         onStart: function( options ) {         
-                            scroll_to_slide(k); 
-
+                            scroll_to_slide(k+1); 
                             return false;
                         },
                         onEnd: function( options ) {}
@@ -190,11 +201,37 @@ $(document).ready(function() {
 			
 			num_slides += 2; // because we have both a title slide and a closing slide
 			// rename the closing slides with the correct ID numbers
-			var close_id = num_slides-1;
-			$('#sclose').attr('id','s' + close_id);
-			$('#s' + close_id).attr('data-id', close_id);
-			$('#panelclose').attr('id','panel' + close_id);
-			
+			var end_id = num_slides-1;
+			$('#send').attr('id','s' + end_id);
+			$('#s' + end_id).attr('data-id', end_id);
+			$('#panelend').attr('id','panel' + end_id);
+
+			if (audio_supported) {
+				// Popcorn cuepoint for opening slide
+				pop.code({
+					start: 0,
+					end: .5,
+					onStart: function( options ) {         
+						scroll_to_slide(0); 
+						return false;
+					},
+					onEnd: function( options ) { }
+				});
+				// Popcorn cuepoint for closing slide
+				pop.code({
+					start: audio_length - .5,
+					end: audio_length,
+					onStart: function( options ) {         
+						scroll_to_slide(end_id); 
+						return false;
+					},
+					onEnd: function( options ) {
+						console.log('audio ended');
+//						$player.jPlayer('stop');
+					}
+				});
+			}
+
 			$slide_nav.find('.slide-nav-item').click( function() {
 				var id = parseInt($(this).attr('data-id'));
                 goto_slide(id);
@@ -206,13 +243,17 @@ $(document).ready(function() {
                 goto_slide(id);
                 slide_list_toggle('close');
             });
+
+			$slide_list_end.append(browse_output);
+            $slide_list_end.find('a').click(function() {
+				var id = parseInt($(this).attr('data-id'));
+                goto_slide(id);
+            });
             
             $panels = $slide_wrap.find('.panel');
             $panel_images = $panels.find('.panel-bg');
 
             resize_slideshow();
-
-			console.log(slideshow_data);
 		});
 	}
 	
@@ -253,14 +294,14 @@ $(document).ready(function() {
 	 * Click actions
 	 */
 	$('#title-button').click(function() {
-		goto_slide(1);
+		play_slide(1);
 	});
 	
 	$audio_branding.click(function() {
 		if (audio_supported) {
             $player.jPlayer('stop');
         }
-		goto_slide(1);
+		goto_slide(0);
 	});
 
 	function slide_list_toggle(mode) {

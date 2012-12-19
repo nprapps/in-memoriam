@@ -39,10 +39,10 @@
 								</div>
 							</div>
 							<ul id="slide-nav">
-								<li id="s0" class="slide-nav-item" style="left: -1%" title="Title Screen: In Memoriam" data-id="">
+								<li id="s0" class="slide-nav-item active" style="left: -1%" title="Title Screen: In Memoriam" data-id="0">
 									<span>Title Screen: In Memoriam</span>
 								</li>
-								<li id="sclose" class="slide-nav-item" style="left: 99%" title="Credits">
+								<li id="send" class="slide-nav-item" style="left: 101%" title="Credits">
 									<span>Credits</span>
 								</li>
 							</ul>
@@ -59,7 +59,7 @@
     <div id="back-btn" class="nav-btn back-next" title="Back"><b>&lt;&nbsp;Back</b></div>
 </div>
 
-<div id="list-nav">
+<div id="list-nav" class="slide-list">
 <!--
 	<h3>Skip To An Artist</h3>
 	<a href="#" class="btn">Close</a>
@@ -70,9 +70,9 @@
 	<div id="slideshow-wrap">
 
 
-		<div id="panel0" class="panel">
+		<div id="panel0" class="panel panel-open">
 			<div id="title" class="panelbg">
-				<div id="title-inner">
+				<div class="panel-inner">
 					<a id="title-button" href="#">
 						<h5>NPR Music presents</h5>
 						<h1>In Memoriam</h1>
@@ -84,9 +84,14 @@
 		</div>
 
 
-		<div id="panelclose" class="panel">
+		<div id="panelend" class="panel panel-end">
 			<div class="panelbg">
-				<h2>This Is The Closing Card</h2>
+				<div class="panel-wrap">
+					<h3>The Artists</h3>
+					<div id="list-nav-end" class="slide-list"></div>
+					<h3>Credits</h3>
+					<p>Jeremy Bowers, Brian Boyer, Christopher Groskopf, Alyson Hurt, Suraya Mohamed, Amy Schriefer / NPR</p>
+				</div>
 			</div>
 		</div>
 
