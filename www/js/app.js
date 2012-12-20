@@ -86,15 +86,15 @@ $(document).ready(function() {
     	 * Determine whether to shift to the next slide
     	 * with audio, or without audio.
     	 */
-    	console.log('goto_slide(' + id + ')');
+//    	console.log('goto_slide(' + id + ')');
     	active_slide = Number(id);
         if (!audio_supported || $player.data().jPlayer.status.paused || slideshow_data[id] == undefined) {
             scroll_to_slide(id);
             if (slideshow_data[id] != undefined) {
-            	console.log('advance cue to ' + slideshow_data[id]['cue_start']);
+//            	console.log('advance cue to ' + slideshow_data[id]['cue_start']);
 				$player.jPlayer('pause', slideshow_data[id]['cue_start']);
 			} else if (id == (num_slides - 1)) {
-            	console.log('advance cue to ' + audio_length);
+//            	console.log('advance cue to ' + audio_length);
 				$player.jPlayer('pause', audio_length);
 			}
         } else {
@@ -108,7 +108,7 @@ $(document).ready(function() {
         /*
          * Scroll horizontally to the correct slide position.
          */
-		console.log('scroll_to_slide(' + id + ')');
+//		console.log('scroll_to_slide(' + id + ')');
         slide_list_toggle('close');
 
         $.smoothScroll({
@@ -129,14 +129,13 @@ $(document).ready(function() {
         /*
          * Play a slide at the correct audio cue.
          */
-    	console.log('play_slide(' + id + ')');
+//    	console.log('play_slide(' + id + ')');
         if (audio_supported) {
             $player.jPlayer('play', slideshow_data[id]['cue_start']);
         } else {
             scroll_to_slide(id);
         }
     }
-
 
 	function load_slideshow_data() {
         /* 
@@ -198,14 +197,21 @@ $(document).ready(function() {
 			});
 			
 			$titlecard.after(slide_output);
-			$slide_nav.html(audio_output);
+			$('#send').before(audio_output);
 			
 			num_slides += 2; // because we have both a title slide and a closing slide
 			// rename the closing slides with the correct ID numbers
 			var end_id = num_slides-1;
+			var end_cue = audio_length - 30;
 			$('#send').attr('id','s' + end_id);
 			$('#s' + end_id).attr('data-id', end_id);
+			$('#s' + end_id).css('left',((end_cue / audio_length) * 100) + '%');
 			$('#panelend').attr('id','panel' + end_id);
+			slideshow_data.push({
+				id: end_id,
+				cue_start: end_cue
+			});
+			console.log(slideshow_data);
 
 			if (audio_supported) {
 				// Popcorn cuepoint for opening slide
@@ -220,16 +226,13 @@ $(document).ready(function() {
 				});
 				// Popcorn cuepoint for closing slide
 				pop.code({
-					start: audio_length - .5,
-					end: audio_length,
+					start: end_cue,
+					end: end_cue + .5,
 					onStart: function( options ) {         
 						scroll_to_slide(end_id); 
 						return false;
 					},
-					onEnd: function( options ) {
-						console.log('audio ended');
-//						$player.jPlayer('stop');
-					}
+					onEnd: function( options ) { }
 				});
 			}
 
@@ -274,7 +277,7 @@ $(document).ready(function() {
 				var id = parseInt($(this).attr('data-id'));
                 goto_slide(id);
             });
-            
+
             $panels = $slide_wrap.find('.panel');
             $panel_images = $panels.find('.panel-bg');
 
@@ -311,6 +314,9 @@ $(document).ready(function() {
 		// reset navbar position
 		var navpos = $audio_nav.position;
 		$slide_list.css('top',navpos.top + $audio_nav.height());
+		
+		// reset slide position
+		scroll_to_slide(active_slide);
 	}
 	$(window).resize(resize_slideshow);
 
