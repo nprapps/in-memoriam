@@ -137,7 +137,6 @@ $(document).ready(function() {
         }
     }
 
-
 	function load_slideshow_data() {
         /* 
          * Load slideshow data from external JSON
