@@ -86,7 +86,7 @@ $(document).ready(function() {
     	 * Determine whether to shift to the next slide
     	 * with audio, or without audio.
     	 */
-//    	console.log('goto_slide(' + id + ')');
+    	console.log('goto_slide(' + id + ')');
     	active_slide = Number(id);
         if (!audio_supported || $player.data().jPlayer.status.paused || slideshow_data[id] == undefined) {
             scroll_to_slide(id);
@@ -108,7 +108,7 @@ $(document).ready(function() {
         /*
          * Scroll horizontally to the correct slide position.
          */
-//		console.log('scroll_to_slide(' + id + ')');
+		console.log('scroll_to_slide(' + id + ')');
         slide_list_toggle('close');
 
         $.smoothScroll({
@@ -144,6 +144,7 @@ $(document).ready(function() {
 		var slide_output = '';
 		var audio_output = '';
         var browse_output = '';
+        var endlist_output = '';
 
 		$.getJSON('deaths.json', function(data) {
 			slideshow_data.push(undefined);
@@ -175,6 +176,7 @@ $(document).ready(function() {
                 slide_output += JST.slide(context);
 				audio_output += JST.slidenav(context);
 				browse_output += JST.browse(context);
+				endlist_output += JST.endlist(context);
 
 				num_slides++;
 				
@@ -211,7 +213,6 @@ $(document).ready(function() {
 				id: end_id,
 				cue_start: end_cue
 			});
-			console.log(slideshow_data);
 
 			if (audio_supported) {
 				// Popcorn cuepoint for opening slide
@@ -272,8 +273,8 @@ $(document).ready(function() {
                 $slide_nav.find('.slide-nav-item[data-id="' + id + '"]').removeClass('active');
             });
 
-			$slide_list_end.append(browse_output);
-            $slide_list_end.find('a').click(function() {
+			$slide_list_end.append(endlist_output);
+            $slide_list_end.find('a.slidelink').click(function() {
 				var id = parseInt($(this).attr('data-id'));
                 goto_slide(id);
             });

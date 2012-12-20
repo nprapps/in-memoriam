@@ -18,49 +18,6 @@ body { background-color: @slide-bg-color }
 #footer ul.bottomlist li.contact a { color: #fff; font-weight: bold; }
 
 
-// TITLE AND CLOSING SCREENS
-.panel-open, .panel-end { 
-	background: @slide-bg-color url('@{img-root}/black_thread.png') repeat;
-	/* Background pattern via Subtle Patterns: http://subtlepatterns.com/black-thread/ */
-}
-#title-button {
-	display: block;
-	width: 60%;
-	max-width: 725px;
-	margin: 60px auto 0 auto;
-	background: @shade-bg;
-	border: 2px solid rgba(60,60,60,.6);
-	border-radius: 6px;
-	padding: 30px;
-	color: @text-gray;
-	text-decoration: none;
-	text-shadow: @shadow;
-	
-	h1 {
-		background: url('@{img-root}/hed-in-memoriam.png') no-repeat;
-		height: 73px;
-		text-indent: -9999px;
-		overflow: hidden;
-	}
-	h2 {
-		font: normal normal 30px/1.5 Georgia, serif;
-		color: #fff;
-		margin-top: 25px;
-		margin-bottom: 0;
-		outline: none;
-	}
-	h2:hover { color: @text-gray; }
-	h5, p { font: italic normal 24px/1.5 Georgia, serif; }
-}
-.panel-end {
-	text-shadow: @shadow;
-	
-	.panel-wrap { padding: 20px; }
-	h3 { font-weight: normal; }
-	p { color: @text-gray; }
-}
-
-
 // AUDIO NAV
 #audio-navbar {
 	position: static;
@@ -245,8 +202,11 @@ body { background-color: @slide-bg-color }
 }
 #list-nav-end {
 	margin-bottom: 20px;
-
-	a { padding-left: 0; }
+	
+	h2, p { margin-left: 70px; }
+	img { margin-right: 0; }
+	a { padding: 0; display: inline; border: none; }
+	a:hover, a.active { background-color: none; }
 }
 #browse-btn { float: left; }
 #browse-btn.active { background-color: @nav-button-color; }
@@ -282,6 +242,9 @@ body { background-color: @slide-bg-color }
 #panel24 .panel-bg {
 	background-position: 0 0;
 }
+#panel2 .panel-bg {
+	background-position: 50% 30%;
+}
 #panel23 .panel-bg {
 	background-position: 50% 25%;
 }
@@ -315,6 +278,74 @@ body { background-color: @slide-bg-color }
 #panel20 .panel-description { left: auto; right: 0; }
 
 
+// TITLE AND CLOSING SCREENS
+.panel-open, .panel-end { 
+	background: @slide-bg-color url('@{img-root}/black_thread.png') repeat;
+	/* Background pattern via Subtle Patterns: http://subtlepatterns.com/black-thread/ */
+}
+#title-button {
+	display: block;
+	width: 60%;
+	max-width: 725px;
+	margin: 60px auto 0 auto;
+	background: @shade-bg;
+	border: 2px solid rgba(60,60,60,.6);
+	border-radius: 6px;
+	padding: 30px;
+	color: @text-gray;
+	text-decoration: none;
+	text-shadow: @shadow;
+	
+	h1 {
+		background: url('@{img-root}/hed-in-memoriam.png') no-repeat;
+		height: 73px;
+		text-indent: -9999px;
+		overflow: hidden;
+	}
+	h2 {
+		font: normal normal 30px/1.5 Georgia, serif;
+		color: #fff;
+		margin-top: 25px;
+		margin-bottom: 0;
+		outline: none;
+	}
+	h2:hover { color: @text-gray; }
+	h5, p { font: italic normal 24px/1.5 Georgia, serif; }
+}
+.panel-end {
+	text-shadow: @shadow;
+	
+	.panel-wrap { padding: 20px; }
+	h3 { font-weight: normal; font-size: 18px; }
+	p { color: @text-gray; }
+}
+#list-nav-end {
+	margin-bottom: 20px;
+
+	.browse-artist { 
+		width: 25%; 
+		float: left; 
+		height: 60px;
+		overflow: hidden;
+		border-top: 1px solid @nav-button-color;
+		padding: 10px 0;
+	}
+	.browse-artist:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+	img { 
+		float: left;
+		width: 60px;
+		height: 44px;
+		border: 1px solid @nav-border;
+	}
+	h2 { font: bold 13px/1.4 Arial, Helvetica, sans-serif; margin: 0 0 0 70px; }
+	p { font: 12px/1.4 Arial, Helvetica, sans-serif; margin: 0 0 0 70px; }
+	a { color: @nav-text-color; }
+	a:hover, a.active { color: @nav-text-hover; text-decoration: none; }
+	a:hover img, a.active img { border-color: @text-gray; }
+}
+#list-nav-end:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+
 // MEDIA QUERIES
 @media (min-width: 1200px) {
 	.jp-audio { width: 600px; }
@@ -326,6 +357,7 @@ body { background-color: @slide-bg-color }
 	#list-nav .browse-artist  { width: 20%; }
 	#list-nav .browse-artist.browse26 { width: 100%; float: none; }
     #browse-btn { display: none; }
+	#list-nav-end .browse-artist { height: 55px; }
 }
 @media (max-width: 979px) {
 	.jp-audio { width: 271px; }
@@ -341,6 +373,7 @@ body { background-color: @slide-bg-color }
 		.browse-artist:nth-child(3n+3) { width: 34%; }
 		.browse-artist.browse26 { width: 67%; }
 	}
+	#list-nav-end .browse-artist { width: 33%; float: left; }
 }
 @media (max-width: 767px) {
 	#audio { width: 101px; }
@@ -363,6 +396,7 @@ body { background-color: @slide-bg-color }
 		.browse-artist:nth-child(3n+3) a { border-right: none; }
 		.browse-artist.browse26 a { border-right: none; }
 	}
+	#list-nav-end .browse-artist { height: 80px; }
 }
 @media (max-width: 640px) {
 	#title-button { 
@@ -385,6 +419,7 @@ body { background-color: @slide-bg-color }
 		.browse-artist a { border-right: none; }
 		.browse-artist:nth-child(odd) a { border-right: 1px solid @nav-border; }
 	}
+	#list-nav-end .browse-artist { width: 50%; float: left; height: 60px; }
 }
 @media (max-width: 480px) {
 	#audio-navbar { padding-left: 0; }
@@ -402,4 +437,5 @@ body { background-color: @slide-bg-color }
 		p.dates, p.now-playing { display: block; padding-right: 0; border-right: none; }
 		p.desc, p.photo-credit { display: block; }
 	}
+	#list-nav-end .browse-artist { width: 100%%; float: none; height: auto; }
 }
