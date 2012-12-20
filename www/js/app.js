@@ -314,6 +314,9 @@ $(document).ready(function() {
 		// reset navbar position
 		var navpos = $audio_nav.position;
 		$slide_list.css('top',navpos.top + $audio_nav.height());
+		
+		// reset slide position
+		scroll_to_slide(active_slide);
 	}
 	$(window).resize(resize_slideshow);
 
