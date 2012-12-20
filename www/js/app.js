@@ -197,14 +197,21 @@ $(document).ready(function() {
 			});
 			
 			$titlecard.after(slide_output);
-			$slide_nav.html(audio_output);
+			$('#send').before(audio_output);
 			
 			num_slides += 2; // because we have both a title slide and a closing slide
 			// rename the closing slides with the correct ID numbers
 			var end_id = num_slides-1;
+			var end_cue = audio_length - 30;
 			$('#send').attr('id','s' + end_id);
 			$('#s' + end_id).attr('data-id', end_id);
+			$('#s' + end_id).css('left',((end_cue / audio_length) * 100) + '%');
 			$('#panelend').attr('id','panel' + end_id);
+			slideshow_data.push({
+				id: end_id,
+				cue_start: end_cue
+			});
+			console.log(slideshow_data);
 
 			if (audio_supported) {
 				// Popcorn cuepoint for opening slide
@@ -219,16 +226,13 @@ $(document).ready(function() {
 				});
 				// Popcorn cuepoint for closing slide
 				pop.code({
-					start: audio_length - .5,
-					end: audio_length,
+					start: end_cue,
+					end: end_cue + .5,
 					onStart: function( options ) {         
 						scroll_to_slide(end_id); 
 						return false;
 					},
-					onEnd: function( options ) {
-//						console.log('audio ended');
-//						$player.jPlayer('stop');
-					}
+					onEnd: function( options ) { }
 				});
 			}
 
