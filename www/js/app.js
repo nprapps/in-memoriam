@@ -310,6 +310,14 @@ $(document).ready(function() {
 		} else {
 			$panel_images.height('100%');
 		}
+
+        if (new_width <= 767) {
+            $('#next-btn').html('&gt;');
+            $('#back-btn').html('&lt;');
+        } else {
+            $('#next-btn').html('Next&nbsp;&gt;');
+            $('#back-btn').html('&lt;&nbsp;Back');
+        }
 		
 		// reset navbar position
 		var navpos = $audio_nav.position;
