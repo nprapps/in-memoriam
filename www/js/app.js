@@ -273,7 +273,7 @@ $(document).ready(function() {
 				var id = parseInt($(this).attr('data-id'));
                 goto_slide(id);
             });
-            
+
             $panels = $slide_wrap.find('.panel');
             $panel_images = $panels.find('.panel-bg');
 

@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block extra_head_js %}
+	{{ JS.push('js/lib/jquery.columnizer.min.js') }}
 	{{ JS.push('js/lib/jquery.smooth-scroll.min.js') }}
 	{{ JS.push('js/lib/jquery.jplayer.js') }}
 	{{ JS.push('js/lib/popcorn-complete.min.js') }}
@@ -53,12 +54,7 @@
     <div id="back-btn" class="nav-btn back-next" title="Back"><b>&lt;<span>&nbsp;Back</span></b></div>
 </div>
 
-<div id="list-nav" class="slide-list">
-<!--
-	<h3>Skip To An Artist</h3>
-	<a href="#" class="btn">Close</a>
--->
-</div>
+<div id="list-nav" class="slide-list"></div>
 
 <div id="slideshow">
 	<div id="slideshow-wrap">
@@ -67,7 +63,7 @@
 		<div id="panel0" class="panel panel-open">
 			<div id="title" class="panelbg">
 				<div class="panel-inner">
-					<a id="title-button" href="#">
+					<a id="title-button" href="javascript:;">
 						<h5>NPR Music presents</h5>
 						<h1>In Memoriam</h1>
 						<p>NPR Music remembers the singers, instrumentalists, songwriters and personalities who died in 2012. Explore their musical&nbsp;legacies.</p>
