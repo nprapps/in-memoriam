@@ -199,13 +199,6 @@ $(document).ready(function() {
 			$titlecard.after(slide_output);
 			$slide_nav.html(audio_output);
 			
-			browse_output += JST.browse({
-                'id': num_slides + 1,
-                'image_name': null,
-                'artist_first_name': '',
-                'artist_last_name': 'Index & Credits'
-            });
-
 			num_slides += 2; // because we have both a title slide and a closing slide
 			// rename the closing slides with the correct ID numbers
 			var end_id = num_slides-1;
@@ -253,6 +246,14 @@ $(document).ready(function() {
             });
 
 			$slide_list.append(browse_output);
+
+			$slide_list.append(JST.browse({
+                'id': num_slides - 1,
+                'image_name': null,
+                'artist_first_name': '',
+                'artist_last_name': 'Index & Credits'
+            }));
+
             $slide_list.find('a').click(function() {
 				var id = parseInt($(this).attr('data-id'));
                 goto_slide(id);
