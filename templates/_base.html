@@ -35,7 +35,7 @@
     {{ JS.render('js/app-header.min.js') }}
 
 	<meta property="og:title" content="NPR Music Presents: In Memoriam 2012" />
-	<meta property="og:url" content="http://apps.npr.org/music-memoriam-2012" />
+	<meta property="og:url" content="http://apps.npr.org/music-memoriam-2012/" />
 	<meta property="og:type" content="article" />
 	<meta property="og:description" content="NPR Music remembers the singers, instrumentalists, songwriters and personalities who died in 2012. Explore their musical legacies." />
 	<meta property="og:image" content="http://media.npr.org/assets/img/2012/12/20/in-memoriam-promo_sq.png" />
@@ -46,6 +46,15 @@
     {% endblock %}
 </head>
 <body id="top">
+    
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     
     <div id="main-content">
 
