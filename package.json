@@ -1,0 +1,14 @@
+{
+  "name": "in-memoriam",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nprapps/in-memoriam.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nprapps/in-memoriam/issues"
+  },
+  "dependencies": {
+    "less": "^3.0.4",
+    "universal-jst": "^1.0.5"
+  }
+}

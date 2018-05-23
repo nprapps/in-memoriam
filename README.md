@@ -33,7 +33,7 @@ Then install the project requirements:
 
 ```
 cd in-memoriam
-npm install less universal-jst
+npm install
 mkvirtualenv in-memoriam
 pip install -r requirements.txt
 ```
